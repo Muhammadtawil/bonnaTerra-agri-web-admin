@@ -1,0 +1,236 @@
+
+<html class="no-js" lang="en">
+
+	<body class="page page-gallery">
+		<!-- start header -->
+		<header class="intro  align-items-center  jarallax" data-speed="0.5" data-img-position="50% 34%" style="background-image: url('../../../assets/img/products_img/products-landing1.jpg');">
+
+			<div class="pattern" style="opacity: 0.25;"></div>
+
+			<div class="container">
+				<div class="intro__text">
+					<p class="intro__subtitle">Discover our</p>
+					<h1 class="intro__title">Products</h1>
+				</div>
+			</div>
+		</header>
+		<!-- end header -->
+
+		<main role="main">
+			<!-- start section -->
+			<section class="section">
+				<div class="container">
+				  <ul id="gallery-set">
+					<li><a href="javascript:void(0);" (click)="onFilterClick('*')" class="filter-button">All</a></li>
+					<li><a href="javascript:void(0);" (click)="onFilterClick('Vegetables')" class="filter-button">Vegetables</a></li>
+					<li><a href="javascript:void(0);" (click)="onFilterClick('Fruits')" class="filter-button">Fruits</a></li>
+					<li><a href="javascript:void(0);" (click)="onFilterClick('Dairy products')" class="filter-button">Dairy products</a></li>
+					<li><a href="javascript:void(0);" (click)="onFilterClick('Long shelf')" class="filter-button">Long shelf</a></li>
+				  </ul>
+			  
+				  <div class="gallery gallery--style-2">
+					<div class="gallery__inner">
+					  <div class="row no-gutters js-isotope transition-fade visible">
+						<div class="col-12 col-md-6 col-lg-3 js-isotope__grid-sizer"></div>
+						<div *ngFor="let product of visibleProducts"
+						  class="col-12 col-md-6 col-lg-3 js-isotope__item transition-fade">
+						  <div class="gallery__item transition-fade">
+							<div class="gallery__item__inner">
+							  <figure>
+								<img src="../../../assets/img/blank.gif" [style.backgroundImage]="'url(' + product.imageUrl + ')'" />
+								<a class="gallery__item__description" href="#">
+								  <span class="gallery__item__title">{{ product.title }}</span>
+								  <span class="gallery__item__subtitle">{{ product.season }}</span>
+								</a>
+							  </figure>
+							</div>
+						  </div>
+						</div>
+					  </div>
+					</div>
+				  </div>
+			  
+				  <div class="text-center">
+					<button id="show-more-btn" class="custom-btn big primary" (click)="showMore()">Show more</button>
+				  </div>
+				</div>
+			  </section>
+			<!-- end section -->
+
+			<!-- start section -->
+			<a id="spy-get-in-touch" class="ancor"></a>
+			<section class="section-contact">
+				<div class="container-fluid">
+					<div class="row">
+						<div class="col-12 col-md-6 bg-1">
+							<div class="item">
+								<header class="item__header">
+									<h2 class="item__title">Contacts</h2>
+
+									<p class="item__subtitle">Mega bold action. Sold care wherever less appetizing your far easily</p>
+								</header>
+
+								<div class="company-contacts">
+									<address>
+										<p>
+											<i class="fontello-location"></i>
+											523 Sylvan Ave, 5th Floor Mountain View, CA 94041USA
+										</p>
+
+										<p>
+											<i class="fontello-phone-call"></i>
+											+1 (234) 56789,  +1 987 654 3210
+										</p>
+
+										<p>
+											<i class="fontello-mail"></i>
+											<a href="mailto:support@watchland.com">supportwatchland.com</a>
+										</p>
+									</address>
+
+									<div class="social-btns">
+										<div class="social-btns__inner">
+											<a class="fontello-twitter" href="#" target="_blank"></a>
+											<a class="fontello-facebook" href="#" target="_blank"></a>
+											<a class="fontello-linkedin-squared" href="#" target="_blank"></a>
+											<a class="fontello-youtube" href="#" target="_blank"></a>
+											<a class="fontello-gplus" href="#" target="_blank"></a>
+											<a class="fontello-vimeo" href="#" target="_blank"></a>
+											<a class="fontello-vkontakte" href="#" target="_blank"></a>
+											<a class="fontello-instagram" href="#" target="_blank"></a>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-12 col-md-6 bg-2">
+							<div class="item">
+								<header class="item__header">
+									<h2 class="item__title">Get In Touch</h2>
+
+									<p class="item__subtitle">Vinyl grown remarkable in survey wherever parents are it's. Mega bold action. Sold care</p>
+								</header>
+
+								<form class="f1 js-contact-form" action="#">
+									<label class="input-wrp">
+										<i class="fontello-user"></i>
+										<input class="textfield" type="text" placeholder="You name" name="name" />
+									</label>
+
+									<label class="input-wrp">
+										<i class="fontello-mail"></i>
+										<input class="textfield" type="text" placeholder="E-mail" name="email" />
+									</label>
+
+									<label class="input-wrp">
+										<i class="fontello-comment"></i>
+										<textarea class="textfield" placeholder="Comment" name="message"></textarea>
+									</label>
+
+									<div class="btn-wrp">
+										<button class="custom-btn long" type="submit" role="button">Send a message</button>
+									</div>
+
+									<div class="form__note"></div>
+								</form>
+							</div>
+						</div>
+
+						<div class="col-12">
+							<div class="item map-container">
+								<div class="g_map" data-longitude="44.958309" data-latitude="34.109925" data-marker=".../../assets/img/marker.png"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</section>
+			<!-- end section -->
+		</main>
+
+		<!-- start footer -->
+		<footer id="footer" class="footer--style-1">
+			<div class="footer__inner">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-6 col-lg-4">
+							<div class="footer__item">
+								<a class="site-logo" href="index.html">Bonna Terra</a>
+
+								<p class="footer__copy">© 2019, Bonna Terra. All rights reserved.<br />Template by <a href="https://themeforest.net/user/artureanec" target="_blank">Artureanec</a></p>
+							</div>
+						</div>
+
+						<div class="col-md-6 col-lg-4">
+							<div class="footer__item">
+								<h3 class="footer__title">Additional menu</h3>
+
+								<div class="row">
+									<div class="col">
+										<ul class="footer__menu">
+											<li><a href="#">Home</a></li>
+											<li><a href="#">Pages</a></li>
+											<li><a href="#">Blog</a></li>
+											<li><a href="#">Contacts</a></li>
+										</ul>
+									</div>
+
+									<div class="col">
+										<ul class="footer__menu">
+											<li><a href="#">My account</a></li>
+											<li><a href="#">Help Desk</a></li>
+											<li><a href="#">Support</a></li>
+											<li><a href="#">YOur order</a></li>
+										</ul>
+									</div>
+								</div>
+							</div>
+						</div>
+
+						<div class="col-md-12 col-lg-4">
+							<div class="footer__item">
+								<h3 class="footer__title">Get a newslatter</h3>
+
+								<form class="footer__form form-horizontal" action="#">
+									<p>Effervescent the secure special. Kids spicey chance excellent proven too sleek handcrafted when makes intense</p>
+
+									<div class="b-table">
+										<div class="cell v-bottom">
+											<label class="input-wrp">
+												<input class="textfield" type="text" placeholder="Your E-mail" />
+											</label>
+										</div>
+
+										<div class="cell v-bottom">
+											<button class="custom-btn primary" type="submit" role="button">subscribe</button>
+										</div>
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</footer>
+		<!-- end footer -->
+
+		<div id="btn-to-top-wrap">
+			<a id="btn-to-top" class="circled" href="javascript:void(0);" data-visible-offset="1000"></a>
+		</div>
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+		<script>window.jQuery || document.write('<script src="../js/jquery-2.2.4.min.js"><\/script>')</script>
+
+		<script type="text/javascript" src="../js/main.min.js"></script>
+		<!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
+		<script>
+			(function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+			function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+			e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+			e.src='https://www.google-analytics.com/analytics.js';
+			r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+			ga('create','UA-XXXXX-X','auto');ga('send','pageview');
+		</script>
+	</body>
+</html>
+<!-- <router-outlet></router-outlet> -->>

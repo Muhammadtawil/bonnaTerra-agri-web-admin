@@ -1,0 +1,10 @@
+<app-scrolltop></app-scrolltop>
+
+<!-- Show Navbar only if the URL does not start with '/admin' -->
+<app-navbar *ngIf="showNavbar"></app-navbar>
+
+<!-- Main Content Area -->
+<router-outlet></router-outlet>
+
+<!-- Show Footer only if the URL does not start with '/admin' -->
+<app-footer *ngIf="showFooter"></app-footer>

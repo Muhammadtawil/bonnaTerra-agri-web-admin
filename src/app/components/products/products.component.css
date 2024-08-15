@@ -1,0 +1,45 @@
+.gallery__item .transition-fade {
+    transition: opacity 0.5s ease-out, visibility 0.5s ease-out !important;
+}
+
+.gallery__item.hidden {
+    opacity: 0 !important;
+    visibility: hidden !important;
+}
+
+.gallery__item.visible {
+    opacity: 1 !important;
+    visibility: visible !important;
+    background-color:red;
+}
+
+
+/* Center the button container vertically and horizontally */
+.text-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px; /* Add margin from top */
+  }
+  
+  /* Style the Show more button */
+  #show-more-btn {
+    margin: 10px 0; /* Margin from top and bottom */
+    padding: 10px 20px; /* Padding inside the button */
+    font-size: 16px; /* Adjust font size if needed */
+    border-radius: 5px; /* Optional: Rounded corners */
+  }
+  
+
+  /* Adjust gallery item layout for different screen sizes */
+@media (max-width: 768px) {
+    .gallery__item {
+      width: 100%; /* Two items per row */
+    }
+  }
+  
+
+  
+  
+
+  

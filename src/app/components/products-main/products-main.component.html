@@ -1,0 +1,71 @@
+<a id="spy-offer" class="ancor"></a>
+<section class="section section--screen section--background section-banner" style="background-image: url(../assets/img/home_img/landing3.jpg);">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-xl-6">
+                <div class="col-MB-30">
+                    <h2 class="section-banner__title">Our Tasty Products</h2>
+
+                    <h4>discover our fresh products in all seasons</h4>
+                </div>
+
+                <p (click)="navigateToProducts()">
+                    <a class="custom-btn primary big" >Discover</a>
+                </p>
+<router-outlet></router-outlet>
+
+            </div>
+        </div>
+    </div>
+</section>
+<a id="spy-gallery" class="ancor"></a>
+<section class="section  section--no-pt section--no-pb  section-gallery">
+    <!-- start item -->
+    <div class="item" style="background-image: url(../assets/img/gall_img/fresh_products.jpg);" (click)="navigateToProducts()">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="item__title">Fresh Produce</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end item -->
+
+    <!-- start item -->
+    <div class="item" style="background-image: url(../assets/img/gall_img/dairy_products.jpg);" (click)="navigateToProducts()">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="item__title">Dairy Products</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end item -->
+
+    <!-- start item -->
+    <div class="item" style="background-image: url(../assets/img/gall_img/long-shelf.jpg);" (click)="navigateToProducts()">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="item__title">Long Shelf-Life Products</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- end item -->
+
+    <!-- start item -->
+    <!-- <div class="item" style="background-image: url(../img/gall_img/4.jpg);">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h2 class="item__title">Spring</h2>
+                </div>
+            </div>
+        </div>
+    </div> -->
+    <!-- end item -->
+</section>
+<router-outlet></router-outlet>

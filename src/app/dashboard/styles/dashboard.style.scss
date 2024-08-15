@@ -1,0 +1,407 @@
+/* You can add global styles to this file, and also import other style files */
+:root {
+    --fontFamily: 'Outfit', sans-serif;
+    --daxaColor: #0f79f3;
+    --primaryColor: #796df6;
+    --dangerColor: #e74c3c;
+    --infoColor: #00cae3;
+    --warningColor: #ffb264;
+    --successColor: #2ed47e;
+    --blackColor: #475569;
+    --whiteColor: #ffffff;
+    --bodyColor: #919aa3;
+    --transition: .5s;
+    --fontSize: 16px;
+    --borderBoxShadow: rgba(0, 0, 0, .05) 0px 6px 24px 0px, rgba(0, 0, 0, .08) 0px 0px 0px 1px;
+}
+*, ::after, ::before {
+    box-sizing: border-box;
+}
+body {
+    margin: 0;
+    padding: 0;
+    color: var(--blackColor);
+    background-color: #eff3f9;
+    font: {
+        weight: 400;
+        size: var(--fontSize);
+        family: var(--fontFamily);
+    };
+}
+a {
+    transition: var(--transition);
+    color: var(--blackColor);
+    text-decoration: none;
+    outline: 0 !important;
+
+    &:hover {
+        text-decoration: none;
+        color: var(--daxaColor);
+    }
+}
+.d-table {
+    width: 100%;
+    height: 100%;
+
+    &-cell {
+        vertical-align: middle;
+    }
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+input {
+    font: {
+        family: var(--fontFamily);
+        size: var(--fontSize);
+    };
+}
+button {
+    font: {
+        family: var(--fontFamily) !important;
+        size: var(--fontSize) !important;
+    };
+}
+.mb-25 {
+    margin-bottom: 25px !important;
+}
+
+// Utilities CSS
+@import "../styles/_utilities";
+
+// UI Kit CSS
+@import "./ui-kit";
+
+// Typography CSS
+@import "../styles/_typography";
+
+// RTL CSS
+@import "../styles/_rtl";
+
+// Dark CSS
+@import "../styles/_dark";
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    body {
+        font-size: 14px;
+    }
+    .mb-25 {
+        margin-bottom: 15px !important;
+    }
+    button {
+        font-size: 14px !important;
+    }
+
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width : 576px) and (max-width : 767px) {
+
+    .mb-25 {
+        margin-bottom: 20px !important;
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    body {
+        font-size: 15px;
+    }
+    button {
+        font-size: 15px !important;
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+// Main Content
+.main-content {
+    overflow: hidden;
+    min-height: 100vh;
+    padding: {
+        top: 118px;
+        left: 282px;
+        right: 25px;
+    };
+    &.active, &.hide-sidebar {
+        padding-left: 85px;
+    }
+    &.right-sidebar {
+        padding: {
+            left: 25px;
+            right: 282px;
+        };
+        &.active, &.hide-sidebar {
+            padding-right: 85px;
+        }
+    }
+}
+
+// Blank Page
+.blank-page {
+    app-sidebar, app-footer, app-header {
+        display: none !important;
+    }
+    .main-content {
+        padding: 0 !important;
+    }
+}
+
+// RTL
+.rtl-enabled {
+    .main-content {
+        padding: {
+            right: 282px;
+            left: 25px;
+        };
+        &.active, &.hide-sidebar {
+            padding: {
+                left: 25px;
+                right: 85px;
+            };
+        }
+        &.right-sidebar {
+            padding: {
+                right: 25px;
+                left: 282px;
+            };
+            &.active, &.hide-sidebar {
+                padding-left: 85px;
+            }
+        }
+    }
+}
+
+/* Max width 767px */
+@media only screen and (max-width : 767px) {
+
+    // Main Content
+    .main-content {
+        padding: {
+            top: 151px;
+            left: 15px;
+            right: 15px;
+        };
+        &.active, &.hide-sidebar {
+            padding-left: 15px;
+        }
+        &.right-sidebar {
+            padding: {
+                left: 15px;
+                right: 15px;
+            };
+            &.active, &.hide-sidebar {
+                padding-right: 15px;
+            }
+        }
+    }
+
+    // RTL
+    .rtl-enabled {
+        .main-content {
+            padding: {
+                right: 15px;
+                left: 15px;
+            };
+            &.active, &.hide-sidebar {
+                padding: {
+                    left: 15px;
+                    right: 15px;
+                };
+            }
+            &.right-sidebar {
+                padding: {
+                    right: 15px;
+                    left: 15px;
+                };
+                &.active, &.hide-sidebar {
+                    padding: {
+                        left: 15px;
+                        right: 15px;
+                    };
+                }
+            }
+        }
+    }
+    
+}
+
+/* Min width 576px to Max width 767px */
+@media only screen and (min-width : 576px) and (max-width : 767px) {
+
+    // Main Content
+    .main-content {
+        padding-top: 156px;
+    }
+
+}
+
+/* Min width 768px to Max width 991px */
+@media only screen and (min-width : 768px) and (max-width : 991px) {
+
+    // Main Content
+    .main-content {
+        padding: {
+            left: 25px;
+            right: 25px;
+        };
+        &.active, &.hide-sidebar {
+            padding-left: 25px;
+        }
+        &.right-sidebar {
+            padding-right: 25px;
+            
+            &.active, &.hide-sidebar {
+                padding-right: 25px;
+            }
+        }
+    }
+
+    // RTL
+    .rtl-enabled {
+        .main-content {
+            padding: {
+                right: 25px;
+                left: 25px;
+            };
+            &.active, &.hide-sidebar {
+                padding: {
+                    left: 25px;
+                    right: 25px;
+                };
+            }
+            &.right-sidebar {
+                padding: {
+                    right: 25px;
+                    left: 25px;
+                };
+                &.active, &.hide-sidebar {
+                    padding: {
+                        left: 25px;
+                        right: 25px;
+                    };
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 992px to Max width 1199px */
+@media only screen and (min-width : 992px) and (max-width : 1199px) {
+
+    // Main Content
+    .main-content {
+        padding: {
+            left: 25px;
+            right: 25px;
+        };
+        &.active, &.hide-sidebar {
+            padding-left: 25px;
+        }
+        &.right-sidebar {
+            padding-right: 25px;
+
+            &.active, &.hide-sidebar {
+                padding-right: 25px;
+            }
+        }
+    }
+
+    // RTL
+    .rtl-enabled {
+        .main-content {
+            padding: {
+                right: 25px;
+                left: 25px;
+            };
+            &.active, &.hide-sidebar {
+                padding: {
+                    left: 25px;
+                    right: 25px;
+                };
+            }
+            &.right-sidebar {
+                padding: {
+                    right: 25px;
+                    left: 25px;
+                };
+                &.active, &.hide-sidebar {
+                    padding: {
+                        left: 25px;
+                        right: 25px;
+                    };
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 1200px to Max width 1399px */
+@media only screen and (min-width: 1200px) and (max-width: 1399px) {
+
+    // Main Content
+    .main-content {
+        padding-left: 262px;
+        
+        &.active, &.hide-sidebar {
+            padding-left: 85px;
+        }
+        &.right-sidebar {
+            padding-right: 262px;
+
+            &.active, &.hide-sidebar {
+                padding-right: 85px;
+            }
+        }
+    }
+
+    // RTL
+    .rtl-enabled {
+        .main-content {
+            padding: {
+                right: 262px;
+                left: 25px;
+            };
+            &.active, &.hide-sidebar {
+                padding: {
+                    left: 25px;
+                    right: 85px;
+                };
+            }
+            &.right-sidebar {
+                padding: {
+                    right: 25px;
+                    left: 262px;
+                };
+                &.active, &.hide-sidebar {
+                    padding: {
+                        left: 85px;
+                        right: 25px;
+                    };
+                }
+            }
+        }
+    }
+
+}
+
+/* Min width 1600px */
+@media only screen and (min-width: 1600px) {}

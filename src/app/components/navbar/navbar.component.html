@@ -1,0 +1,22 @@
+	<!-- start top bar -->
+<!-- navbar.component.html -->
+<div id="top-bar" class="top-bar--style-3">
+    <div class="container">
+        <a id="top-bar__logo" class="site-logo" href="/">BonnaTerra</a>
+        <a id="top-bar__navigation-toggler" href="javascript:void(0);"><span></span></a>
+        <nav id="top-bar__navigation" role="navigation">
+            <ul class="nav">
+                <li><a [routerLink]="['/home']" fragment="spy-services">{{'services'|translate}}</a></li>
+                <li><a [routerLink]="['/home']" fragment="spy-about">{{'About'|translate}}</a></li>
+                <li><a [routerLink]="['/home']" fragment="spy-partners">{{'partners' |translate}}</a></li>
+                <li><a [routerLink]="['/home']" fragment="spy-offer">{{'products' |translate}}</a></li>
+                <li><a [routerLink]="['/home']" fragment="spy-blog">{{'news' |translate}}</a></li>
+                <li class="li-btn"><a class="custom-btn primary" href="#spy-get-in-touch">{{'touch' |translate}}</a></li>
+                <li class="li-btn"><a class="custom-btn primary" (click)="translateText()">{{ lang === 'en' ? 'English' : 'العربية' }}</a></li>
+
+            </ul>
+        </nav>
+    </div>
+</div>
+
+    <!-- end top bar -->
