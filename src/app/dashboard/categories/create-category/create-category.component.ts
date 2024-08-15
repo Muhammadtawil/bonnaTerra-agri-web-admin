@@ -13,53 +13,54 @@ import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { NgxEditorModule, Editor, Toolbar } from 'ngx-editor';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 
+
+
 @Component({
-  selector: 'app-edit-product',
+  selector: 'app-create-category',
   standalone: true,
   imports: [MatCardModule, MatMenuModule, MatButtonModule, RouterLink, FormsModule, MatFormFieldModule, MatInputModule, MatSelectModule, MatDatepickerModule, MatNativeDateModule, ReactiveFormsModule, FileUploadModule, NgxEditorModule],
-  templateUrl: './edit-product.component.html',
-  styleUrl: './edit-product.component.scss'
+  templateUrl: './create-category.component.html',
+  styleUrl: './create-category.component.scss'
 })
-export class EditProductComponent {
- // Select Value
- productTypeSelected = 'option1';
- brandTypeSelected = 'option1';
- categorySelected = 'option1';
- vendorSelected = 'option1';
- collectionSelected = 'option1';
+export class CreateCategoryComponent {
+  // Text Editor
+  editor!: Editor;
+  toolbar: Toolbar = [
+      ['bold', 'italic'],
+      ['underline', 'strike'],
+      ['code', 'blockquote'],
+      ['ordered_list', 'bullet_list'],
+      [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
+      ['link', 'image'],
+      ['text_color', 'background_color'],
+      ['align_left', 'align_center', 'align_right', 'align_justify'],
+  ];
 
- // Text Editor
- editor!: Editor;
- toolbar: Toolbar = [
-     ['bold', 'italic'],
-     ['underline', 'strike'],
-     ['code', 'blockquote'],
-     ['ordered_list', 'bullet_list'],
-     [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-     ['link', 'image'],
-     ['text_color', 'background_color'],
-     ['align_left', 'align_center', 'align_right', 'align_justify'],
- ];
+  ngOnInit(): void {
+      this.editor = new Editor();
+  }
 
- ngOnInit(): void {
-     this.editor = new Editor();
- }
+  // make sure to destory the editor
+  ngOnDestroy(): void {
+      this.editor.destroy();
+  }
 
- // make sure to destory the editor
- ngOnDestroy(): void {
-     this.editor.destroy();
- }
+  // File Uploader
+  public multiple: boolean = false;
+
   // isToggled
   isToggled = false;
 
-  constructor(public themeService: CustomizerSettingsService) {
-    this.themeService.isToggled$.subscribe((isToggled) => {
-      this.isToggled = isToggled;
-    });
+  constructor(
+      public themeService: CustomizerSettingsService
+  ) {
+      this.themeService.isToggled$.subscribe(isToggled => {
+          this.isToggled = isToggled;
+      });
   }
-    
-      // RTL Mode
+
+  // RTL Mode
   toggleRTLEnabledTheme() {
-    this.themeService.toggleRTLEnabledTheme();
+      this.themeService.toggleRTLEnabledTheme();
   }
 }

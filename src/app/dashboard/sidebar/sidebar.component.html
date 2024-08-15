@@ -77,27 +77,27 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="products-grid" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/products-grid" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Products Grid
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="products-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/products-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Products List
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="product-details" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/product-details" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Product Details
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="create-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/create-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Create Product
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="edit-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/edit-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Edit Product
                                 </a>
                             </li>
@@ -152,6 +152,38 @@
                                     Reviews
                                 </a>
                             </li>
+                 
+                        </ul>
+                    </mat-expansion-panel>
+                    <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <i class="material-symbols-outlined">
+                                    Category
+                                </i>
+                                <span class="title">
+                                    Categories
+                                </span>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <ul class="sidebar-sub-menu">
+                     
+                            <li class="sidemenu-item">
+                                <a routerLink="/dashboard/categories" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Categories List
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/dashboard/create-category" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Create Category
+                                </a>
+                            </li>
+                            <li class="sidemenu-item">
+                                <a routerLink="/dashboard/edit-category" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                    Edit Category
+                                </a>
+                            </li>
+            
                  
                         </ul>
                     </mat-expansion-panel>

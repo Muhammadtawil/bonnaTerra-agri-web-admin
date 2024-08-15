@@ -12,6 +12,9 @@ import { ProductsListComponent } from './dashboard/products/products-list/produc
 import { CreateProductsComponent } from './dashboard/products/create-products/create-products.component';
 import { ProductDetailsComponent } from './dashboard/products/product-details/product-details.component';
 import { EditProductComponent } from './dashboard/products/edit-product/edit-product.component';
+import { CategoriesListComponent } from './dashboard/categories/categories-list/categories-list.component';
+import { CreateCategoryComponent } from './dashboard/categories/create-category/create-category.component';
+import { EditCategoryComponent } from './dashboard/categories/edit-category/edit-category.component';
 
 
 export const routes: Routes = [
@@ -43,6 +46,9 @@ export const routes: Routes = [
       { path: 'product-details', component: ProductDetailsComponent },
       { path: 'edit-product', component: EditProductComponent },
 
+      { path: 'categories', component: CategoriesListComponent },
+      { path: 'create-category', component: CreateCategoryComponent },
+      { path: 'edit-category', component: EditCategoryComponent },
       
 
     ]
