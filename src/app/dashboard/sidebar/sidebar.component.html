@@ -38,7 +38,7 @@
                             Dashboard
                         </span>
                     </a>
-                    <a routerLink="/to-do-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/dashboard/to-do-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             ballot
                         </i>
@@ -46,7 +46,7 @@
                             To Do List
                         </span>
                     </a>
-                    <a routerLink="/calendar" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/dashboard/calendar" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             calendar_today
                         </i>
@@ -54,7 +54,7 @@
                             Calendar
                         </span>
                     </a>
-                    <a routerLink="/contacts" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a routerLink="/dashboard/contacts-list" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             perm_contact_calendar
                         </i>
@@ -101,54 +101,9 @@
                                     Edit Product
                                 </a>
                             </li>
-                            <!-- <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/cart" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Cart
-                                </a>
-                            </li> -->
-                  
+               
                             <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/customers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Customers
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/customer-details" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Customer Details
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/categories" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Categories
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/create-category" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Create Category
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/edit-category" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Edit Category
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/sellers" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Sellers
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/seller-details" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Seller Details
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/create-seller" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Create Seller
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/ecommerce-page/reviews" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/products-reviews" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Reviews
                                 </a>
                             </li>
@@ -187,6 +142,23 @@
                  
                         </ul>
                     </mat-expansion-panel>
+
+                    <a routerLink="/dashboard/sellers" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            calendar_today
+                        </i>
+                        <span class="title">
+                            Sellers
+                        </span>
+                    </a>
+                    <a routerLink="/dashboard/customers" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            people
+                        </i>
+                        <span class="title">
+                            Customers
+                        </span>
+                    </a>
                     <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = true">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
@@ -236,17 +208,17 @@
                         </mat-expansion-panel-header>
                         <ul class="sidebar-sub-menu">
                             <li class="sidemenu-item">
-                                <a routerLink="/users" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/team-members" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Team Members
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/users/users-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/users-list" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Users List
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/users/add-user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
+                                <a routerLink="/dashboard/create-user" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Add User
                                 </a>
                             </li>

@@ -1,0 +1,124 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        {{ mode === 'create' ? 'Create Contact' : 'Edit Contact' }}
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Contacts
+        </li>
+        <li class="breadcrumb-item position-relative">
+            {{ mode === 'create' ? 'Create Contact' : 'Edit Contact' }}
+        </li>
+    </ol>
+</div>
+
+<!-- Create Contact -->
+<mat-card
+    class="daxa-card create-contact-card mb-25 border-radius bg-white border-none d-block"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <mat-card-content>
+        <form [formGroup]="contactForm" (ngSubmit)="saveContact()">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Contact Name
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter name
+                            </mat-label>
+                            <input matInput formControlName="name">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Email Address
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter email address
+                            </mat-label>
+                            <input matInput formControlName="email">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Phone Number
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter phone number
+                            </mat-label>
+                            <input matInput formControlName="phone">
+                        </mat-form-field>
+                    </div>
+                </div>
+            
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Company Name
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter company name
+                            </mat-label>
+                            <input matInput formControlName="company">
+                        </mat-form-field>
+                    </div>
+                </div>
+       
+             
+                <div class="col-md-4 col-sm-6">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Contact Status
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Select contact status
+                            </mat-label>
+                            <mat-select formControlName="status">
+                                <mat-option value="Active">
+                                    Active
+                                </mat-option>
+                                <mat-option value="Deactive">
+                                    Deactive
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-md-12 col-sm-12">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">
+                            Customer Image
+                        </label>
+                        <file-upload class="file-uploader" [multiple]="multiple"></file-upload>
+                    </div>
+                </div>
+            </div>
+            <div class="btn-box">
+                <button mat-button type="submit">
+                    {{ mode === 'create' ? 'Create Contact' : 'Update Contact' }}
+                </button>
+                <button mat-button type="button" >
+                    Cancel
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

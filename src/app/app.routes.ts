@@ -15,6 +15,18 @@ import { EditProductComponent } from './dashboard/products/edit-product/edit-pro
 import { CategoriesListComponent } from './dashboard/categories/categories-list/categories-list.component';
 import { CreateCategoryComponent } from './dashboard/categories/create-category/create-category.component';
 import { EditCategoryComponent } from './dashboard/categories/edit-category/edit-category.component';
+import { ContactComponent } from './components/contact/contact.component';
+import { CreateContactComponent } from './dashboard/contacts/create-contact/create-contact.component';
+import { AdminContactListComponent } from './dashboard/contacts/contact-list/contact-list.component';
+import { UsersListComponent } from './dashboard/users/users-list/users-list.component';
+import { CreateUserComponent } from './dashboard/users/create-user/create-user.component';
+import { TeamMembersComponent } from './dashboard/users/team-members/team-members.component';
+import { TodoListComponent } from './dashboard/to-do/todo-list/todo-list.component';
+import { CalendarComponent } from './dashboard/calendar/calendar.component';
+import { ReviewsComponent } from './dashboard/products/reviews/reviews.component';
+import { SellersComponent } from './dashboard/sellers/sellers.component';
+import { CreateSellerComponent } from './dashboard/sellers/create-seller/create-seller.component';
+import { CustomersComponent } from './dashboard/customers/customers.component';
 
 
 export const routes: Routes = [
@@ -50,6 +62,30 @@ export const routes: Routes = [
       { path: 'create-category', component: CreateCategoryComponent },
       { path: 'edit-category', component: EditCategoryComponent },
       
+      { path: 'contacts-list', component: AdminContactListComponent },
+      { path: 'create-contact', component: CreateContactComponent },
+      { path: 'edit-contact/:id', component: CreateContactComponent },
+
+      { path: 'users-list', component: UsersListComponent },
+      { path: 'create-user', component: CreateUserComponent },
+      { path: 'team-members', component: TeamMembersComponent },
+
+      { path: 'to-do-list', component: TodoListComponent },
+
+      { path: 'calendar', component: CalendarComponent },
+
+      { path: 'products-reviews', component: ReviewsComponent },
+
+      { path: 'sellers', component: SellersComponent },
+      { path: 'create-seller', component: CreateSellerComponent },
+
+
+      { path: 'customers', component: CustomersComponent },
+      { path: 'create-customer', component: ReviewsComponent },
+
+
+
+
 
     ]
   },
