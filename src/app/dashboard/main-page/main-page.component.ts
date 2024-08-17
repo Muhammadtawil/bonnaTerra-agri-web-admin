@@ -13,11 +13,11 @@ import { CustomizerSettingsComponent } from '../customizer-settings/customizer-s
   standalone: true,
   imports: [RouterOutlet, CommonModule, SidebarComponent, HeaderComponent, CustomizerSettingsComponent],
   templateUrl: './main-page.component.html',
-  styleUrls: ['../styles/dashboard.style.scss','./main-page.component.scss'] // Note: Renamed to `styleUrls` from `styleUrl`
+  styleUrls: ['../styles/dashboard.style.scss','./main-page.component.scss',] // Note: Renamed to `styleUrls` from `styleUrl`
 })
 export class DashMainComponent {
 // Title
-title = 'Daxa - Angular 18 Material Design Admin Dashboard Template';
+title = 'BOnna Terra - Angular 18 Material Design Admin Dashboard Template';
 
 // isSidebarToggled
 isSidebarToggled = false;

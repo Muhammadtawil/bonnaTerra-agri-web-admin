@@ -49,6 +49,7 @@ export class AdminContactListComponent {
     'customer',
     'email',
     'phone',
+    'company',
     'status',
     'action',
   ];

@@ -39,7 +39,11 @@ export class CustomizerSettingsService {
     toggleTheme() {
         this.isDarkTheme = !this.isDarkTheme;
         localStorage.setItem('isDarkTheme', JSON.stringify(this.isDarkTheme));
+        this.isSidebarDarkTheme = !this.isSidebarDarkTheme;
+        localStorage.setItem('isSidebarDarkTheme', JSON.stringify(this.isSidebarDarkTheme));
         this.updateDarkBodyClass();
+        this.toggleSidebarTheme();
+        this.isSidebarDark();
     }
     isDark() {
         return this.isDarkTheme;

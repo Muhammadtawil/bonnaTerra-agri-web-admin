@@ -1,0 +1,64 @@
+.breadcrumb-card {
+    .breadcrumb {
+        .breadcrumb-item {
+            font-size: 14.5px;
+            display: inline-block;
+            color: var(--bodyColor);
+            margin: 0; // Remove any extra margins
+
+            &:not(:last-child)::after { // Add the dot separator
+                content: ' . ';
+                padding: 0 8px; // Adjust space around the dot
+                color: var(--secondary-color); // Dot color
+            }
+
+            a {
+                color: var(--bodyColor);
+                padding: 0; // No extra padding needed
+
+                &:hover {
+                    color: var(--daxaColor);
+                }
+            }
+
+            &:first-child {
+                margin-left: 0;
+            }
+
+            &:last-child {
+                margin-right: 0;
+                color: var(--blackColor);
+
+                &::after {
+                    content: ''; // Remove the dot after the last item
+                }
+            }
+        }
+    }
+}
+
+.d-breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0;
+    margin-bottom: var(--breadcrumb-margin-bottom);
+    font-size: var(--breadcrumb-font-size);
+    list-style: none;
+    background-color: var(--breadcrumb-bg);
+    border-radius: var(--breadcrumb-border-radius);
+    --breadcrumb-divider-color: var(--secondary-color);
+    --breadcrumb-item-padding-x: 0.5rem;
+    --breadcrumb-item-active-color: var(--secondary-color);
+    --secondary-color: rgba(33, 37, 41, 0.75);
+    --link-color: var(--daxaColor);
+
+    .d-breadcrumb-item {
+        &.active {
+            color: var(--breadcrumb-item-active-color);
+        }
+    }
+}
+
+.list-unstyled {
+    list-style-type: none !important;
+}

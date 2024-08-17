@@ -1,0 +1,17 @@
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        {{ title }}
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a [routerLink]="homeLink" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li *ngFor="let item of breadcrumbItems; let i = index" class="breadcrumb-item position-relative">
+            <a *ngIf="item.link" [routerLink]="item.link">{{ item.label }}</a>
+            <span *ngIf="!item.link">{{ item.label }}</span>
+        </li>
+    </ol>
+</div>

@@ -13,7 +13,7 @@ import { CustomizerSettingsComponent } from '../customizer-settings/customizer-s
   standalone: true,
   imports: [RouterOutlet, CommonModule, SidebarComponent, HeaderComponent, FooterComponent, CustomizerSettingsComponent, NgClass],
   templateUrl: './dashboard-layout.component.html',
-  styleUrl: './dashboard-layout.component.scss'
+  styleUrls: ['./dashboard-layout.component.scss','../../dashboard/styles/dashboard.style.scss']
 })
 export class DashboardLayoutComponent {
     

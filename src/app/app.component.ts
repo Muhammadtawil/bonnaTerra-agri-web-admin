@@ -39,7 +39,7 @@ import { routes } from './app.routes';
 export class AppComponent implements OnInit {
   showNavbar = true;
   showFooter = true;
-
+  showScrollButton = true;
   constructor(private router: Router) {}
 
   ngOnInit(): void {
@@ -49,6 +49,8 @@ export class AppComponent implements OnInit {
         const url = event.urlAfterRedirects || event.url;
         this.showNavbar = !url.startsWith('/dashboard') 
         this.showFooter = !url.startsWith('/dashboard');
+        this.showScrollButton = !url.startsWith('/dashboard');
+
       });
   }
 }

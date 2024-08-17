@@ -21,20 +21,20 @@
 			<section class="section">
 				<div class="container">
 				  <ul id="gallery-set">
-					<li><a href="javascript:void(0);" (click)="onFilterClick('*')" class="filter-button">All</a></li>
-					<li><a href="javascript:void(0);" (click)="onFilterClick('Vegetables')" class="filter-button">Vegetables</a></li>
-					<li><a href="javascript:void(0);" (click)="onFilterClick('Fruits')" class="filter-button">Fruits</a></li>
-					<li><a href="javascript:void(0);" (click)="onFilterClick('Dairy products')" class="filter-button">Dairy products</a></li>
-					<li><a href="javascript:void(0);" (click)="onFilterClick('Long shelf')" class="filter-button">Long shelf</a></li>
+					<li><a href="javascript:void(0);" class="filter-button" (click)="onFilterClick('*')">All</a></li>
+					<li><a href="javascript:void(0);" class="filter-button" (click)="onFilterClick('Vegetables')">Vegetables</a></li>
+					<li><a href="javascript:void(0);" class="filter-button" (click)="onFilterClick('Fruits')">Fruits</a></li>
+					<li><a href="javascript:void(0);" class="filter-button" (click)="onFilterClick('Dairy products')">Dairy products</a></li>
+					<li><a href="javascript:void(0);" class="filter-button" (click)="onFilterClick('Long shelf')">Long shelf</a></li>
 				  </ul>
 			  
-				  <div class="gallery gallery--style-2">
+				  <div class="gallery gallery--style-3">
 					<div class="gallery__inner">
-					  <div class="row no-gutters js-isotope transition-fade visible">
-						<div class="col-12 col-md-6 col-lg-3 js-isotope__grid-sizer"></div>
-						<div *ngFor="let product of visibleProducts"
-						  class="col-12 col-md-6 col-lg-3 js-isotope__item transition-fade">
-						  <div class="gallery__item transition-fade">
+					  <div class="row no-gutters">
+						<div *ngFor="let product of visibleProducts" 
+							 class="col-12 col-md-6 col-lg-4 col-xl-3 transition-fade" 
+							 [@productAnimation]>
+						  <div class="gallery__item">
 							<div class="gallery__item__inner">
 							  <figure>
 								<img src="../../../assets/img/blank.gif" [style.backgroundImage]="'url(' + product.imageUrl + ')'" />
@@ -55,6 +55,7 @@
 				  </div>
 				</div>
 			  </section>
+			  
 			<!-- end section -->
 
 			<!-- start section -->

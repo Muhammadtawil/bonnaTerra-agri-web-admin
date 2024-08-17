@@ -1,0 +1,139 @@
+<div
+    class="add-new-task-popup"
+    [class.active]="classApplied"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <div class="popup-dialog">
+        <mat-card class="daxa-card mb-25 border-radius bg-white border-none d-block">
+            <mat-card-header>
+                <mat-card-title>
+                    <h5 class="mb-0">
+                        Add New Task
+                    </h5>
+                </mat-card-title>
+                <mat-card-subtitle>
+                    <button
+                        mat-button
+                        (click)="toggleClass()"
+                    >
+                        <i class="ri-close-fill"></i>
+                    </button>
+                </mat-card-subtitle>
+            </mat-card-header>
+            <mat-card-content>
+                <div class="row">
+                    <div class="col-md-12">
+                        <label class="main-label d-block lh-1 text-black">
+                            Task Name
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Task name
+                            </mat-label>
+                            <input matInput placeholder="E.g. Hand Watch">
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="main-label d-block lh-1 text-black">
+                            Assigned To
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Select
+                            </mat-label>
+                            <mat-select>
+                                <mat-option value="option1">
+                                    Shawn Kennedy
+                                </mat-option>
+                                <mat-option value="option2">
+                                    Roberto Cruz
+                                </mat-option>
+                                <mat-option value="option3">
+                                    Juli Johnson
+                                </mat-option>
+                                <mat-option value="option4">
+                                    Catalina Engles	
+                                </mat-option>
+                                <mat-option value="option5">
+                                    Louis Nagle
+                                </mat-option>
+                                <mat-option value="option6">
+                                    Michael Marquez
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="main-label d-block lh-1 text-black">
+                            Due Date
+                        </label>
+                        <mat-form-field class="date">
+                            <mat-label>
+                                Choose a date
+                            </mat-label>
+                            <input matInput [matDatepicker]="dueDate">
+                            <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
+                            <mat-datepicker #dueDate></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="main-label d-block lh-1 text-black">
+                            Priority
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Select
+                            </mat-label>
+                            <mat-select>
+                                <mat-option value="option1">
+                                    High
+                                </mat-option>
+                                <mat-option value="option2">
+                                    Medium
+                                </mat-option>
+                                <mat-option value="option3">
+                                    Low
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="main-label d-block lh-1 text-black">
+                            Status
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Select
+                            </mat-label>
+                            <mat-select>
+                                <mat-option value="option1">
+                                    In Progress
+                                </mat-option>
+                                <mat-option value="option2">
+                                    Pending
+                                </mat-option>
+                                <mat-option value="option3">
+                                    Completed
+                                </mat-option>
+                                <mat-option value="option4">
+                                    Not Started
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="btn-box">
+                    <button
+                        mat-button
+                        (click)="toggleClass()"
+                    >
+                        Cancel
+                    </button>
+                    <button mat-button>
+                        Create
+                    </button>
+                </div>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

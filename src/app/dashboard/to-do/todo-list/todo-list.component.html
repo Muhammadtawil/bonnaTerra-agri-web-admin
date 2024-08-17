@@ -1,23 +1,13 @@
 <!-- Breadcrumb -->
-<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
-    <h5 class="mb-0">
-        To Do List
-    </h5>
-    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
-        <li class="breadcrumb-item position-relative">
-            <a routerLink="/" class="d-inline-block position-relative">
-                <i class="ri-home-8-line"></i>
-                Dashboard
-            </a>
-        </li>
-        <li class="breadcrumb-item position-relative">
-            Apps
-        </li>
-        <li class="breadcrumb-item position-relative">
-            To Do List
-        </li>
-    </ol>
-</div>
+<app-breadcrumb 
+  [title]="'To Do List'" 
+  [homeLink]="'/dashboard'" 
+  [breadcrumbItems]="[
+    { label: 'Apps', link: '/apps' }, 
+    { label: 'To Do List' }
+  ]">
+</app-breadcrumb>
+
 
 <!-- To Do List -->
 <mat-card
@@ -146,19 +136,15 @@
                         </th>
                         <td mat-cell *matCellDef="let element">
                             <div class="action-info">
-                                <button type="button" mat-button matTooltip="View" matTooltipPosition="above">
-                                    <i class="material-symbols-outlined">
-                                        {{element.action.view}}
-                                    </i>
-                                </button>
+                         
                                 <button type="button" mat-button matTooltip="Edit" matTooltipPosition="above">
                                     <i class="material-symbols-outlined">
-                                        {{element.action.edit}}
+                                        edit
                                     </i>
                                 </button>
                                 <button type="button" mat-button matTooltip="Delete" matTooltipPosition="above">
                                     <i class="material-symbols-outlined">
-                                        {{element.action.delete}}
+                                        delete
                                     </i>
                                 </button>
                             </div>
@@ -178,6 +164,7 @@
         </div>
     </mat-card-content>
 </mat-card>
+
 
 <!-- Popup -->
 <div

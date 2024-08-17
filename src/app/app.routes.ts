@@ -27,6 +27,16 @@ import { ReviewsComponent } from './dashboard/products/reviews/reviews.component
 import { SellersComponent } from './dashboard/sellers/sellers.component';
 import { CreateSellerComponent } from './dashboard/sellers/create-seller/create-seller.component';
 import { CustomersComponent } from './dashboard/customers/customers.component';
+import { SettingsComponent } from './dashboard/settings/settings.component';
+import { AccountSettingsComponent } from './dashboard/settings/account-settings/account-settings.component';
+import { ChangePasswordComponent } from './dashboard/settings/change-password/change-password.component';
+import { ProfileComponent } from './dashboard/profile/profile.component';
+import { ProfileAboutComponent } from './dashboard/profile/about/about.component';
+import { SubscribersComponent } from './dashboard/subscribers/subscribers.component';
+import { EventsComponent } from './dashboard/events/events.component';
+import { NotificationsPageComponent } from './dashboard/notifications-page/notifications-page.component';
+import { SignUpComponent } from './dashboard/authentication/sign-up/sign-up.component';
+import { AdminNewsComponent } from './dashboard/news/news.component';
 
 
 export const routes: Routes = [
@@ -40,7 +50,8 @@ export const routes: Routes = [
 
   { path: 'news', component: NewspageComponent},
 
-  { path: 'dashboard/signin', component: SignInComponent },
+  { path: 'dashboard/auth/signin', component: SignInComponent },
+  { path: 'dashboard/auth/logout', component: SignUpComponent },
 
 
   // { path: 'admin/main', component: DashMainComponent },
@@ -83,12 +94,43 @@ export const routes: Routes = [
       { path: 'customers', component: CustomersComponent },
       { path: 'create-customer', component: ReviewsComponent },
 
+      {
+        path: 'settings',
+        component: SettingsComponent,
+        children: [
+            {path: '', component: AccountSettingsComponent},
+            {path: 'change-password', component: ChangePasswordComponent},
+        ]
+    },
+
+    {
+      path: 'user-profile',
+      component: ProfileComponent,
+      children: [
+          {
+              path: '',
+              component: ProfileAboutComponent,
+              children: [
+                  {path: '', component: ProfileAboutComponent},
+                  {path: 'about', component: ProfileAboutComponent},
+             
+              ]
+          }, ]},
 
 
+      { path: 'subscribers', component: SubscribersComponent },
+      { path: 'events', component: EventsComponent },
+      { path: 'notifications', component: NotificationsPageComponent },
+      { path: 'admin-news', component: AdminNewsComponent },
+      
+
+          
 
 
     ]
   },
+
+
   { path: '**', component: NotfoundComponent },
 
 ];

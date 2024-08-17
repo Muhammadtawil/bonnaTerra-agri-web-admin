@@ -6,7 +6,7 @@ import { RouterLink, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterLink,RouterOutlet],
   templateUrl: './aboutpage.component.html',
-  styleUrl: './aboutpage.component.css'
+  styleUrls: ['./aboutpage.component.css','../../../styles.css']
 })
 export class AboutpageComponent {
 

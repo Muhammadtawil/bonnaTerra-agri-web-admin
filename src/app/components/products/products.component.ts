@@ -2,28 +2,41 @@ import { Component, OnInit, Renderer2, HostListener } from '@angular/core';
 import { ProductService } from './product.service';
 import { Product } from './product.model';
 import { CommonModule } from '@angular/common';
+import { trigger, state, style, animate, transition, keyframes } from '@angular/animations';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
-  styleUrls: ['./products.component.css', '../../app.component.css'],
+  styleUrls: ['../../../styles.css'],
   standalone: true,
-  imports: [CommonModule]
+  imports: [CommonModule],
+  animations: [
+    trigger('productAnimation', [
+      transition('void => *', [
+        animate('0.6s ease-in-out', keyframes([
+          style({ transform: 'scale(0.5)', offset: 0 }),
+          style({ transform: 'scale(1.05)', offset: 0.7 }),
+          style({ transform: 'scale(0.95)', offset: 0.9 }),
+          style({ transform: 'scale(1)', offset: 1 })
+        ]))
+      ])
+    ])
+  ]
 })
 export class ProductsComponent implements OnInit {
   products: Product[] = [];
   filteredProducts: Product[] = [];
-  visibleProducts: Product[] = [];  // Products currently visible
-  initialItemCount = 4;  // Default number of items to display initially for small screens
-  loadMoreCount = 4;  // Default number of items to display on each "Show more" click for small screens
+  visibleProducts: Product[] = [];
+  initialItemCount = 4;
+  loadMoreCount = 4;
 
   constructor(private productService: ProductService, private renderer: Renderer2) {}
 
   ngOnInit(): void {
     this.products = this.productService.getProducts();
     this.filteredProducts = this.products;
-    this.updateVisibleProducts(); // Set initial visible products
-    this.adjustLayout(); // Adjust layout based on screen size
+    this.updateVisibleProducts();
+    this.adjustLayout();
   }
 
   @HostListener('window:resize')
@@ -36,8 +49,8 @@ export class ProductsComponent implements OnInit {
       this.initialItemCount = 4;
       this.loadMoreCount = 4;
     } else {
-      this.initialItemCount = 11; // Default for larger screens
-      this.loadMoreCount = 6; // Default for larger screens
+      this.initialItemCount = 11;
+      this.loadMoreCount = 6;
     }
     this.updateVisibleProducts();
   }
@@ -66,17 +79,11 @@ export class ProductsComponent implements OnInit {
   }
 
   onFilterClick(category: string): void {
-    // Filter products
     if (category === '*') {
       this.filteredProducts = this.products;
     } else {
       this.filteredProducts = this.products.filter(product => product.category === category);
     }
-    
-    // Reset visible products and update
     this.updateVisibleProducts();
-
-    // Optional: Reset the "Show More" button if needed
-    this.updateShowMoreButton();
   }
 }

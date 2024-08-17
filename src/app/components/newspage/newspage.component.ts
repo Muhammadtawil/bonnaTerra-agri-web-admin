@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './newspage.component.html',
-  styleUrl: './newspage.component.css'
+  styleUrls: ['./newspage.component.css','../../../styles.css']
 })
 export class NewspageComponent {
 
