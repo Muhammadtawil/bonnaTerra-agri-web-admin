@@ -37,7 +37,6 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
     PartneshipComponent,
     ContactComponent,
     ScrolltopComponent,
-    // ProductsComponent,
     RouterOutlet,
     RouterLink,
     RouterLinkActive,
@@ -48,9 +47,9 @@ import { TranslateModule, TranslateService } from '@ngx-translate/core';
   ],
   
   
-        providers: [
-          TranslateService
-        ],
+  providers: [
+  TranslateService
+  ],
   templateUrl: './home.component.html',
   styleUrl: '../../app.component.css'
 })
