@@ -5504,6 +5504,36 @@ form.f1 button[type=submit].custom-btn.primary:not(:hover):not(:focus) {
     -o-transition: none;
     transition: none
   }
+  
+}
+
+@media (max-width: 767px) {
+  .section-services .container {
+    text-align: center; /* Center text horizontally */
+  }
+
+  .section-services .row {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center items horizontally */
+  }
+
+  .section-services .col-xl-4, .section-services .col-xl-8 {
+    width: 100%;
+    text-align: center; /* Center text inside columns */
+    margin-bottom: 20px; /* Optional: space between columns */
+  }
+
+  .section-services .feature__item {
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content inside feature items */
+    text-align: center; /* Center text inside feature items */
+  }
+
+  .section-services .feature__item__ico {
+    margin-bottom: 10px; /* Space between icon and title */
+  }
 }
 @media only screen and (min-width:768px) {
   .col-md-MB-30 {
@@ -8732,3 +8762,4 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 /* // Dark CSS */
 /* @import "./app/dashboard/styles/_dark"; */
+

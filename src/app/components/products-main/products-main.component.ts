@@ -12,7 +12,7 @@ import { Router, RouterLink, RouterLinkActive, RouterModule, RouterOutlet, } fro
     RouterLinkActive,
   ],
   templateUrl: './products-main.component.html',
-  styleUrl: '../../app.component.css'
+  styleUrls: ['../../app.component.css','./products-main.component.css']
 })
 export class ProductsMainComponent {
   constructor(private router: Router) { }

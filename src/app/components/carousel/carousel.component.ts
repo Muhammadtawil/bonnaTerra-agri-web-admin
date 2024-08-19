@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { RouterLink, RouterOutlet } from '@angular/router';
 
 import { WebFontService } from '../../../google.font';
 import { TranslateModule } from '@ngx-translate/core';
@@ -8,7 +8,7 @@ import { TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-carousel',
   standalone: true,
-  imports: [TranslateModule],
+  imports: [TranslateModule,RouterLink],
   templateUrl: './carousel.component.html',
   styleUrl: '../../app.component.css'
 })

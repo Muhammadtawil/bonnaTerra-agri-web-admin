@@ -1,6 +1,7 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
-import { Router, RouterLink, } from '@angular/router';
+import { NavigationEnd, Router, RouterLink, } from '@angular/router';
 import { TranslateModule, TranslateService } from '@ngx-translate/core';
+import { filter } from 'rxjs';
 
 @Component({
   selector: 'app-navbar',
@@ -23,8 +24,7 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private translate: TranslateService,
-    private router: Router,
-  
+    private router: Router
   ) {
     this.translate.onLangChange.subscribe((event) => {
       this.lang = event.lang;
@@ -34,7 +34,14 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
     this.initializeMenu();
-    this.onWindowScroll();  // Initialize scroll event
+    this.onWindowScroll(); // Initialize scroll event
+
+    // Scroll to fragment when navigation ends
+    this.router.events.pipe(
+      filter(event => event instanceof NavigationEnd)
+    ).subscribe(() => {
+      this.scrollToFragment();
+    });
   }
 
   @HostListener('window:scroll', [])
@@ -51,7 +58,7 @@ export class NavbarComponent implements OnInit {
     const nTopBar = document.getElementById('top-bar')!;
     const nMenuToggler = document.getElementById('top-bar__navigation-toggler')!;
     const nNav = document.getElementById('top-bar__navigation')!;
-    const jSubMenu = nNav.querySelectorAll('.submenu') as NodeListOf<HTMLElement>; 
+    const jSubMenu = nNav.querySelectorAll('.submenu') as NodeListOf<HTMLElement>;
     this.isSmallScreen = window.innerWidth <= 767;
 
     if (jSubMenu.length) {
@@ -62,18 +69,31 @@ export class NavbarComponent implements OnInit {
     this.attachMenuTogglerHandler(nMenuToggler, nTopBar);
   }
 
+  private scrollToFragment(): void {
+    const fragment = this.router.parseUrl(this.router.url).fragment;
+    if (fragment) {
+      const element = document.getElementById(fragment);
+      if (element) {
+        window.scrollTo({
+          top: element.getBoundingClientRect().top + window.scrollY - document.getElementById('top-bar')!.offsetHeight,
+          behavior: 'smooth'
+        });
+      }
+    }
+  }
+
   attachLinkHandlers(nNav: HTMLElement, nMenuToggler: HTMLElement, nTopBar: HTMLElement, jSubMenu: NodeListOf<HTMLElement>): void {
     const links = nNav.querySelectorAll('li a');
-  
+
     links.forEach(link => {
       link.addEventListener('click', (e: Event) => {
         e.preventDefault();
-  
+
         const hash = (link as HTMLAnchorElement).hash;
-  
+
         if (hash) {
           const targetElement = document.querySelector(hash);
-  
+
           if (targetElement) {
             window.scrollTo({
               top: targetElement.getBoundingClientRect().top + window.scrollY - nTopBar.offsetHeight,
@@ -81,7 +101,7 @@ export class NavbarComponent implements OnInit {
             });
           }
         }
-  
+
         if (this.isSmallScreen) {
           this.isMenuOpen = false;
           nTopBar.classList.remove('expanded');
@@ -90,13 +110,13 @@ export class NavbarComponent implements OnInit {
         }
       });
     });
-  
+
     links.forEach(link => {
       link.addEventListener('click', (e: Event) => {
         if (this.isSmallScreen && (link as HTMLElement).nextElementSibling?.classList.contains('submenu')) {
           e.preventDefault();
           const parentLi = (link as HTMLElement).parentElement;
-  
+
           if ((link as HTMLElement).nextElementSibling?.classList.contains('submenu')) {
             if ((link as HTMLElement).nextElementSibling?.classList.contains('show')) {
               parentLi?.classList.remove('drop_active');
@@ -112,7 +132,6 @@ export class NavbarComponent implements OnInit {
       });
     });
   }
-  
 
   attachMenuTogglerHandler(nMenuToggler: HTMLElement, nTopBar: HTMLElement): void {
     nMenuToggler.addEventListener('click', (e: Event) => {
@@ -148,8 +167,6 @@ export class NavbarComponent implements OnInit {
     }
   }
 
-  // translate: TranslateService = inject(TranslateService);
-
   translateText(): void {
     const lang = this.lang === 'ar' ? 'en' : 'ar'; // Toggle between 'en' and 'ar'
     localStorage.setItem('lang', lang);
@@ -162,13 +179,13 @@ export class NavbarComponent implements OnInit {
     const html = document.querySelector('html');
     const body = document.querySelector('body');
     const topBar = document.getElementById('top-bar');
-    
+
     if (html && body && topBar) {
       html.setAttribute('lang', lang);
       html.setAttribute('dir', lang === 'ar' ? 'rtl' : 'ltr');
       body.classList.remove(lang === 'ar' ? 'ltr' : 'rtl');
       body.classList.add(lang === 'ar' ? 'rtl' : 'ltr');
-      
+
       // Dynamically adjust the order
       if (lang === 'ar') {
         topBar.style.flexDirection = 'row-reverse'; // Reverse the order
@@ -176,7 +193,7 @@ export class NavbarComponent implements OnInit {
         topBar.style.flexDirection = 'row'; // Default LTR order
       }
     }
-    
+
     this.changeBtnGroupRadius(lang);
     this.changeNavDrawer(lang);
   }

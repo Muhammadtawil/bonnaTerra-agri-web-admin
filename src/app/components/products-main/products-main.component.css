@@ -1,0 +1,28 @@
+.item {
+    position: relative; /* Ensure the item container is positioned */
+    background-size: cover;
+    background-position: center;
+    height: 250px; /* Adjust the height as needed */
+}
+
+.item .overlay {
+    position: absolute; /* Position overlay absolutely within the item */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay with 50% opacity */
+    z-index: 1; /* Ensure overlay is above the background but below the content */
+}
+
+.item .container {
+    position: relative; /* Position container relative to overlay */
+    z-index: 2; /* Ensure content is above the overlay */
+    color: white; /* Ensure text color contrasts well with overlay */
+    text-align: center;
+    padding: 20px;
+}
+
+.item .item__title {
+    margin: 0;
+}
