@@ -4,7 +4,7 @@ import * as $ from 'jquery';
 @Component({
   selector: 'app-testimonials',
   templateUrl: './testimonials.component.html',
-  styleUrls: ['../../../styles.css'],
+  styleUrls: ['../../../styles.css','./testimonials.component.css'],
   standalone: true,
 })
 export class TestimonialsComponent implements AfterViewInit {

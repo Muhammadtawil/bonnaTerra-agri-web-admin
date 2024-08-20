@@ -16,31 +16,15 @@ import { jarallax } from 'jarallax';
   templateUrl: './about.component.html',
   styleUrls: ['../../../styles.css','./about.component.css'],
 })
-export class AboutComponent implements OnInit {
+export class AboutComponent {
   constructor(private router: Router) {}
-  ngOnInit(): void {
-    this.initializeJarallax();
-  }
 
   navigateToAboutPage() {
     this.router.navigate(['/about']).then(() => {
       window.scrollTo(0, 0);
     });
   }
-  private initializeJarallax(): void {
-    const oInterval = setInterval(() => {
-      if (typeof window.jQuery !== 'undefined') {
-        clearInterval(oInterval);
 
-        const nJarallax = document.querySelectorAll('.jarallax');
 
-        if (window.device.desktop() && nJarallax.length > 0) {
-          jarallax(nJarallax, {
-            type: 'scroll',
-            zIndex: -20
-          });
-        }
-      }
-    }, 500);
-  }
+
 }

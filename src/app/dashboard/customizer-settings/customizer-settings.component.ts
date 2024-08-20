@@ -12,7 +12,7 @@ import { NgScrollbarModule } from 'ngx-scrollbar';
     standalone: true,
     imports: [RouterLink, NgClass, MatDividerModule, MatIconModule, MatButtonModule, NgScrollbarModule],
     templateUrl: './customizer-settings.component.html',
-    styleUrls: ['./customizer-settings.component.scss','../styles/dashboard.style.scss']
+    styleUrls: ['./customizer-settings.component.scss']
 })
 export class CustomizerSettingsComponent {
 

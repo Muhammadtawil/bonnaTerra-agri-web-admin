@@ -7,7 +7,7 @@ import { jarallax } from 'jarallax';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './wellness.component.html',
-  styleUrls: ['../../../styles.css']
+  styleUrls: ['../../../styles.css','./wellness.component.css']
 })
 export class WellnessComponent implements AfterViewInit {
   ngAfterViewInit(): void {

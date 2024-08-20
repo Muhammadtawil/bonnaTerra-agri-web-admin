@@ -37,6 +37,7 @@ import { EventsComponent } from './dashboard/events/events.component';
 import { NotificationsPageComponent } from './dashboard/notifications-page/notifications-page.component';
 import { SignUpComponent } from './dashboard/authentication/sign-up/sign-up.component';
 import { AdminNewsComponent } from './dashboard/news/news.component';
+import { ForgotPasswordComponent } from './dashboard/authentication/forgot-password/forgot-password.component';
 
 
 export const routes: Routes = [
@@ -52,6 +53,8 @@ export const routes: Routes = [
 
   { path: 'dashboard/auth/signin', component: SignInComponent },
   { path: 'dashboard/auth/logout', component: SignUpComponent },
+  { path: 'dashboard/auth/forgot-password', component: ForgotPasswordComponent },
+
 
 
   // { path: 'admin/main', component: DashMainComponent },

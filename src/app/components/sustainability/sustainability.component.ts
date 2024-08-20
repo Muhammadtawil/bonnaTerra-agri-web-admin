@@ -6,7 +6,7 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule],
   templateUrl: './sustainability.component.html',
-  styleUrl: '../../app.component.css'
+  styleUrls: ['../../app.component.css','./sustainability.component.css']
 })
 export class SustainabilityComponent {
 

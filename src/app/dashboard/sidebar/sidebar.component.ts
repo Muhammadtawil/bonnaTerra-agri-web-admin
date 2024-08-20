@@ -13,7 +13,7 @@ import { CustomizerSettingsService } from '../customizer-settings/customizer-set
     standalone: true,
     imports: [NgScrollbarModule, MatExpansionModule, RouterLinkActive, RouterModule, RouterLink, NgClass],
     templateUrl: './sidebar.component.html',
-    styleUrls: ['./sidebar.component.scss','../styles/dashboard.style.scss']
+    styleUrls: ['./sidebar.component.scss',]
 })
 export class SidebarComponent {
 

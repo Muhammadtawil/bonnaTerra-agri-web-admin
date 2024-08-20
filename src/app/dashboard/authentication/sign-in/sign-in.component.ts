@@ -42,7 +42,7 @@ export class SignInComponent {
     authForm: FormGroup;
     onSubmit() {
         if (this.authForm.valid) {
-            this.router.navigate(['/']);
+            this.router.navigate(['/dashboard']);
         } else {
             console.log('Form is invalid. Please check the fields.');
         }

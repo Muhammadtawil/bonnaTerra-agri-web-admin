@@ -10,7 +10,7 @@ import { TranslateModule } from '@ngx-translate/core';
   standalone: true,
   imports: [TranslateModule,RouterLink],
   templateUrl: './carousel.component.html',
-  styleUrl: '../../app.component.css'
+  styleUrls:[ '../../app.component.css','./carousel.component.css']
 })
 export class CarouselMainComponent implements OnInit {
   constructor(private webFontService: WebFontService) {}

@@ -4119,7 +4119,7 @@ form.f1 button[type=submit].custom-btn.primary:not(:hover):not(:focus) {
   margin-bottom: 50px
 }
 #footer .site-logo {
-  background: url(../assets/img/logo_3.png);
+  background: url(../assets/img/BonnaTerra-footer.png);
   width: 253px;
   height: 71px
 }
@@ -8483,3 +8483,17 @@ body.rtl #top-bar__navigation {
   order: 1;
 }
 
+
+.parallax-section {
+  position: relative;
+  overflow: hidden;
+  /* background-color: #37343b; */
+  background-attachment: fixed;
+  background-size: cover;
+  background-position: center;
+}
+
+.parallax-element {
+  position: relative;
+  transition: transform 0.3s ease-out;
+}

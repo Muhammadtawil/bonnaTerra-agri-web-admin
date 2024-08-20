@@ -13,7 +13,7 @@ import { CustomizerSettingsService } from '../customizer-settings/customizer-set
     standalone: true,
     imports: [NgClass, MatMenuModule, MatButtonModule, RouterLink, RouterLinkActive],
     templateUrl: './header.component.html',
-    styleUrls: ['./header.component.scss','../styles/dashboard.style.scss']
+    styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
 
@@ -56,5 +56,12 @@ export class HeaderComponent {
     toggleTheme() {
         this.themeService.toggleTheme();
     }
+
+    // RTL Mode
+    toggleRTLEnabledTheme() {
+        this.themeService.toggleRTLEnabledTheme();
+    }
+
+
 
 }

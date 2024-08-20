@@ -6,7 +6,7 @@ import { Router, RouterOutlet } from '@angular/router';
   standalone: true,
   imports: [RouterOutlet],
   templateUrl: './blog.component.html',
-  styleUrl: '../../app.component.css'
+  styleUrls: ['../../app.component.css','./blog.component.css']
 })
 export class BlogComponent {
   constructor(private router: Router) {}
