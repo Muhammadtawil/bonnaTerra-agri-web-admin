@@ -35,8 +35,10 @@
                 "node_modules/jquery/dist/jquery.min.js",
                 "node_modules/vegas/dist/vegas.min.js",
                 "node_modules/owl.carousel/dist/owl.carousel.min.js",
-                "node_modules/isotope-layout/dist/isotope.pkgd.min.js"
-                "node_modules/device.js/dist/device.js"
+                "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
+                "node_modules/device.js/dist/device.js",
+                 "node_modules/appear/appear.js",
+    "node_modules/easy-pie-chart/dist/jquery.easypiechart.min.js"
                 
             ]
           },
@@ -101,8 +103,10 @@
                 "node_modules/jquery/dist/jquery.min.js",
                 "node_modules/vegas/dist/vegas.min.js",
                 "node_modules/owl.carousel/dist/owl.carousel.min.js",
-                "node_modules/isotope-layout/dist/isotope.pkgd.min.js"
-                "node_modules/device.js/dist/device.js"
+                "node_modules/isotope-layout/dist/isotope.pkgd.min.js",
+                "node_modules/device.js/dist/device.js",
+                "node_modules/appear/appear.js",
+                "node_modules/easy-pie-chart/dist/jquery.easypiechart.min.js"
             ]
           }
         }

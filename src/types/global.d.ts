@@ -19,3 +19,8 @@ declare module 'device.js' {
 
   export = device;
 }
+
+interface JQuery {
+  appear(callback: () => void): JQuery;
+  easyPieChart(options: any): JQuery;
+}
