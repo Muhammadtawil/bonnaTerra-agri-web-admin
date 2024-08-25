@@ -1,25 +1,10 @@
-<div
-    [ngClass]="{'blank-page': router.url === '/authentication' || router.url.startsWith('/authentication')}"
-    [class.card-borderd-theme]="themeService.isCardBorder()"
-    [class.card-border-radius]="themeService.isCardBorderRadius()"
-    [class.rtl-enabled]="themeService.isRTLEnabled()"
->
+<h1>Posts</h1>
 
-    <!-- Sidebar -->
-    <app-sidebar></app-sidebar>
+@for(post of posts; track post.id){
+    <h2>{{post.sellerPhone}}</h2>
+    <p>{{post.sellerEmail}}</p>
+    <p>{{post.sellerName}}</p>
 
-    <!-- Main Content -->
-    <div
-        class="main-content transition d-flex flex-column"
-        [ngClass]="{'active': isSidebarToggled}"
-        [class.right-sidebar]="themeService.isRightSidebar()"
-        [class.hide-sidebar]="themeService.isHideSidebar()"
-    >
-        <app-header></app-header>
-        <router-outlet></router-outlet>
-    </div>
-
-    <!-- Customizer Settings -->
-    <app-customizer-settings></app-customizer-settings>
-    
-</div>
+}@empty {
+    <p>No Posts Found</p>
+}

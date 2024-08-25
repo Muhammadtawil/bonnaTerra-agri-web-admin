@@ -47,6 +47,7 @@
     "ngx-tiptap": "^11.0.0",
     "owl.carousel": "^2.3.4",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.12.4",
     "tslib": "^2.3.0",
     "vegas": "^2.6.0",
     "zone.js": "~0.14.3"

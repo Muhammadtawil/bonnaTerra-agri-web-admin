@@ -8,44 +8,72 @@ import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { NgIf } from '@angular/common';
 import { Router } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { AuthServices } from '../../../services/auth.services';
 
 @Component({
-    selector: 'app-sign-in',
-    standalone: true,
-    imports: [RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule, NgIf],
-    templateUrl: './sign-in.component.html',
-    styleUrl: './sign-in.component.scss'
+  selector: 'app-sign-in',
+  standalone: true,
+  imports: [RouterLink, MatFormFieldModule, MatInputModule, MatButtonModule, MatCheckboxModule, ReactiveFormsModule, NgIf],
+  templateUrl: './sign-in.component.html',
+  styleUrls: ['./sign-in.component.scss']  // Corrected `styleUrl` to `styleUrls`
 })
 export class SignInComponent {
+  authForm: FormGroup;
+  hide = true;
+  loginError: string | null = null;  // To store login error messages
 
-    // isToggled
-    isToggled = false;
+  constructor(
+    private fb: FormBuilder,
+    private router: Router,
+    public themeService: CustomizerSettingsService,
+    private authService: AuthServices
+  ) {
+    this.authForm = this.fb.group({
+      email: ['', [Validators.required, Validators.email]],
+      password: ['', [Validators.required, Validators.minLength(8)]],
+    });
 
-    constructor(
-        private fb: FormBuilder,
-        private router: Router,
-        public themeService: CustomizerSettingsService
-    ) {
-        this.authForm = this.fb.group({
-            email: ['', [Validators.required, Validators.email]],
-            password: ['', [Validators.required, Validators.minLength(8)]],
-        });
-        this.themeService.isToggled$.subscribe(isToggled => {
-            this.isToggled = isToggled;
-        });
-    }
+    this.themeService.isToggled$.subscribe(isToggled => {
+      this.isToggled = isToggled;
+    });
+  }
 
-    // Password Hide
-    hide = true;
+  isToggled = false;
 
-    // Form
-    authForm: FormGroup;
-    onSubmit() {
-        if (this.authForm.valid) {
-            this.router.navigate(['/dashboard']);
-        } else {
-            console.log('Form is invalid. Please check the fields.');
+  onSubmit() {
+    if (this.authForm.valid) {
+      const credentials = {
+        userEmail: this.authForm.value.email,
+        password: this.authForm.value.password
+      };
+
+      this.authService.login(credentials).subscribe({
+        next: (response) => {
+          console.log('Login successful', response);
+          localStorage.setItem('token', response.accessToken);  // Save the token to localStorage
+          localStorage.setItem('username', response.userName);  // If necessary
+          localStorage.setItem('userRole', response.UserRole);  // If necessary
+          localStorage.setItem('userId', response.userId);
+          // Optionally fetch user info right after login
+          this.authService.getUserInfo().subscribe({
+            next: (userInfo) => {
+                  console.log('User info retrieved', userInfo);
+                  this.router.navigate(['/dashboard']); 
+             
+            },
+            error: (error) => {
+              console.error('Failed to fetch user info', error);
+              this.loginError = 'Failed to fetch user information.';
+            }
+          });
+        },
+        error: (error) => {
+          console.error('Login failed', error);
+          this.loginError = 'Incorrect email or password';  // Show error message
         }
+      });
+    } else {
+      console.log('Form is invalid. Please check the fields.');
     }
-
+  }
 }

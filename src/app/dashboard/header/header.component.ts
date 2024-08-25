@@ -16,7 +16,8 @@ import { CustomizerSettingsService } from '../customizer-settings/customizer-set
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent {
-
+    userName = localStorage.getItem('username')
+    userRole=localStorage.getItem('userRole')
     // isSidebarToggled
     isSidebarToggled = false;
 

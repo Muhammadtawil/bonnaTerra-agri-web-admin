@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { CommonModule, NgClass, ViewportScroller } from '@angular/common';
 import { NavigationEnd, Router, RouterOutlet, Event as RouterEvent } from '@angular/router'; // Import Event as RouterEvent
 import { SidebarComponent } from '../sidebar/sidebar.component';
@@ -7,7 +7,17 @@ import { FooterComponent } from '../../components/footer/footer.component';
 import { CustomizerSettingsService } from '../customizer-settings/customizer-settings.service';
 import { ToggleService } from '../sidebar/toggle.service';
 import { CustomizerSettingsComponent } from '../customizer-settings/customizer-settings.component';
+import { PostServices } from '../../services/post.services';
+import { data } from 'jquery';
 
+
+interface Post {
+    id: string;
+    sellerName: string;
+    sellerPhone: number;
+    sellerEmail: string;
+
+  }
 @Component({
   selector: 'dash-main-page',
   standalone: true,
@@ -16,32 +26,21 @@ import { CustomizerSettingsComponent } from '../customizer-settings/customizer-s
   styleUrls: ['../styles/dashboard.style.scss','./main-page.component.scss',] // Note: Renamed to `styleUrls` from `styleUrl`
 })
 export class DashMainComponent {
-// Title
-title = 'BOnna Terra - Angular 18 Material Design Admin Dashboard Template';
 
-// isSidebarToggled
-isSidebarToggled = false;
-
-// isToggled
-isToggled = false;
+    postService = inject(PostServices)
+    posts :Post[]=[];
 
 constructor(
-    public router: Router,
-    private toggleService: ToggleService,
-    private viewportScroller: ViewportScroller,
-    public themeService: CustomizerSettingsService
+ 
 ) {
-    this.router.events.subscribe((event: RouterEvent) => { // Use RouterEvent here
-        if (event instanceof NavigationEnd) {
-            // Scroll to the top after each navigation end
-            this.viewportScroller.scrollToPosition([0, 0]);
+    this.postService.getPosts().subscribe({
+        next: (data) => {
+            this.posts = data;
+        },
+        error: (err) => {
+            console.log(err)
         }
-    });
-    this.toggleService.isSidebarToggled$.subscribe(isSidebarToggled => {
-        this.isSidebarToggled = isSidebarToggled;
-    });
-    this.themeService.isToggled$.subscribe(isToggled => {
-        this.isToggled = isToggled;
-    });
+    })
 }
+    
 }

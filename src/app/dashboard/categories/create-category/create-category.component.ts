@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatNativeDateModule } from '@angular/material/core';
@@ -10,8 +10,9 @@ import { MatMenuModule } from '@angular/material/menu';
 import { MatSelectModule } from '@angular/material/select';
 import { RouterLink } from '@angular/router';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
-import { NgxEditorModule, Editor, Toolbar } from 'ngx-editor';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
+import { CategoriesServices } from '../../../services/categoris.services';
+import { successAlert } from '../../common/alerts/alerts';
 
 @Component({
   selector: 'app-create-category',
@@ -21,7 +22,6 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
     MatMenuModule,
     MatButtonModule,
     RouterLink,
-    FormsModule,
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
@@ -29,47 +29,66 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
     MatNativeDateModule,
     ReactiveFormsModule,
     FileUploadModule,
-    NgxEditorModule,
   ],
   templateUrl: './create-category.component.html',
-  styleUrl: './create-category.component.scss',
+  styleUrls: ['./create-category.component.scss'],
 })
-export class CreateCategoryComponent {
-  // Text Editor
-  editor!: Editor;
-  toolbar: Toolbar = [
-    ['bold', 'italic'],
-    ['underline', 'strike'],
-    ['code', 'blockquote'],
-    ['ordered_list', 'bullet_list'],
-    [{ heading: ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'] }],
-    ['link', 'image'],
-    ['text_color', 'background_color'],
-    ['align_left', 'align_center', 'align_right', 'align_justify'],
-  ];
+export class CreateCategoryComponent implements OnInit, OnDestroy {
+  categoryForm!: FormGroup;
 
-  ngOnInit(): void {
-    this.editor = new Editor();
-  }
-
-  // make sure to destory the editor
-  ngOnDestroy(): void {
-    this.editor.destroy();
-  }
-
-  // File Uploader
   public multiple: boolean = false;
-
-  // isToggled
   isToggled = false;
 
-  constructor(public themeService: CustomizerSettingsService) {
+  constructor(
+    public themeService: CustomizerSettingsService,
+    private categoriesServices: CategoriesServices,
+    private fb: FormBuilder
+  ) {
     this.themeService.isToggled$.subscribe((isToggled) => {
       this.isToggled = isToggled;
     });
   }
 
-  // RTL Mode
+  ngOnInit(): void {
+    this.categoryForm = this.fb.group({
+      categoryName: ['', Validators.required],
+      categoryArabicName: ['', Validators.required],
+      categoryDescription: ['', Validators.required], // Textarea for description
+      inStock: ['true'],
+      onWeb: ['false']
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Cleanup logic if any (currently not used)
+  }
+
+  onSubmit(): void {
+    if (this.categoryForm.valid) {
+      const formData = this.categoryForm.value;
+
+      this.categoriesServices.createCategory(formData).subscribe({
+        next: (response: any) => {
+          successAlert('Category Added Sucessfully')
+          this.categoryForm.reset({
+            categoryName: '',
+            categoryArabicName: '',
+            categoryDescription: '',
+            inStock: 'true',
+            onWeb: 'false'
+          });
+        },
+        error: (error: any) => {
+          console.error('Error creating category', error);
+        }
+      });
+    }
+  }
+
+  onCancel(): void {
+    // Handle the cancel action here
+  }
+
   toggleRTLEnabledTheme() {
     this.themeService.toggleRTLEnabledTheme();
   }
