@@ -22,9 +22,13 @@ export class CategoriesServices {
       .pipe(catchError(this.handleError));
   }
 
-  // get category with id
-
-  // create category
+ // get category with id
+    getCategoryByID(categoryId: string) {
+    return this.http.get<CategoryInetrface>(`${this.categoriesURl}/${categoryId}`).pipe(catchError(this.handleError))
+    }
+    
+    
+// create category
    createCategory(catData: {
     categoryName: string;
     categoryArabicName: string;
@@ -34,7 +38,12 @@ export class CategoriesServices {
   }
 
   // update category
-
+  updateCategory(categoryId: string, categoryData: CategoryInetrface) {
+    return this.http.patch<CategoryInetrface>(`${this.categoriesURl}/${categoryId}`, categoryData).pipe(
+      catchError(this.handleError)
+    );
+  }
+  
   // delete category
 
   //handle error

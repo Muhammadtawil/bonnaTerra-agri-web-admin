@@ -1,7 +1,9 @@
 <mat-card class="daxa-card create-category-card mb-25 border-radius bg-white border-none d-block" [class.rtl-enabled]="themeService.isRTLEnabled()">
     <mat-card-header>
         <mat-card-title>
-            <h5 class="mb-0">Add New Category</h5>
+            <h5 class="mb-0">
+                {{ mode === 'create' ? 'Add New Category' : 'Edit Category' }}
+            </h5>
         </mat-card-title>
     </mat-card-header>
     <mat-card-content>
@@ -60,7 +62,9 @@
                 </div>
             </div>
             <div class="btn-box">
-                <button mat-button >Create Category</button>
+                <button mat-button >
+                     {{ mode === 'create' ? 'Create Category' : 'Update Category' }}
+                </button>
                 <button mat-button  (click)="onCancel()">Cancel</button>
             </div>
         </form>

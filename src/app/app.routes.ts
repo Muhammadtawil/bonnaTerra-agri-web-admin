@@ -1,5 +1,5 @@
 import { Routes } from '@angular/router';
-import { ProductsComponent } from './components/products/products.component';
+// import { ProductsComponent } from './components/products/products.component';
 import { HomeComponent } from './components/home/home.component';
 import { NotfoundComponent } from './components/notfound/notfound.component';
 import { AboutpageComponent } from './components/aboutpage/aboutpage.component';
@@ -14,7 +14,6 @@ import { ProductDetailsComponent } from './dashboard/products/product-details/pr
 import { EditProductComponent } from './dashboard/products/edit-product/edit-product.component';
 import { CategoriesListComponent } from './dashboard/categories/categories-list/categories-list.component';
 import { CreateCategoryComponent } from './dashboard/categories/create-category/create-category.component';
-import { EditCategoryComponent } from './dashboard/categories/edit-category/edit-category.component';
 import { ContactComponent } from './components/contact/contact.component';
 import { CreateContactComponent } from './dashboard/contacts/create-contact/create-contact.component';
 import { AdminContactListComponent } from './dashboard/contacts/contact-list/contact-list.component';
@@ -47,7 +46,7 @@ export const routes: Routes = [
 
   { path: 'about', component: AboutpageComponent },
 
-  { path: 'category', component: ProductsComponent },
+  // { path: 'category', component: ProductsComponent },
 
   { path: 'news', component: NewspageComponent},
 
@@ -70,11 +69,11 @@ export const routes: Routes = [
       { path: 'products-list', component: ProductsListComponent },
       { path: 'create-product', component: CreateProductsComponent },
       { path: 'product-details', component: ProductDetailsComponent },
-      { path: 'edit-product', component: EditProductComponent },
+      { path: 'edit-product/:id', component: CreateProductsComponent },
 
       { path: 'categories', component: CategoriesListComponent },
       { path: 'create-category', component: CreateCategoryComponent },
-      { path: 'edit-category', component: EditCategoryComponent },
+      { path: 'edit-category/:id', component: CreateCategoryComponent },
       
       { path: 'contacts-list', component: AdminContactListComponent },
       { path: 'create-contact', component: CreateContactComponent },

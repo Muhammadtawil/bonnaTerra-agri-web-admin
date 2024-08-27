@@ -369,12 +369,19 @@
 .mat-mdc-card {
     &.daxa-card {
         &.product-card {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
             .mat-mdc-card-content {
                 .image {
+                    height: 263px; /* Adjust this value to fit your desired image size */
                     overflow: hidden;
-
                     img {
                         margin-bottom: -4px;
+                        width: 100%;
+                        height: 100%;
+                        object-fit:fill;
                     }
                     .mdc-fab {
                         top: 20px;
@@ -647,6 +654,7 @@
             &.product-card {
                 .mat-mdc-card-content {
                     .image {
+                        
                         .mdc-fab {
                             right: auto;
                             left: 20px;
@@ -977,3 +985,21 @@
 
 /* Min width 1600px */
 @media only screen and (min-width: 1600px) {}
+
+.daxa-badge {
+    color: var(--daxaColor);
+    background: rgba(15, 121, 243, 0.10);
+
+    &.in-progress {
+        color: var(--warningColor);
+        background: rgba(241, 179, 28, 0.10);
+    }
+    &.pending {
+        color: var(--successColor);
+        background: rgba(46, 212, 126, 0.10);
+    }
+    &.not-started {
+        color: var(--dangerColor);
+        background: rgba(231, 76, 60, 0.10);
+    }
+}
