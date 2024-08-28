@@ -35,6 +35,12 @@ export interface CategoryInetrface {
     draft: boolean;
   }
 
+export interface SubscriberInterface{
+  id: string;
+  subscriberEmail: string;
+  subscriberName: string;
+  } 
+
   export const months = [
     { value: 1, name: 'January' },
     { value: 2, name: 'February' },

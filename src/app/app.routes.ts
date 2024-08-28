@@ -37,6 +37,7 @@ import { NotificationsPageComponent } from './dashboard/notifications-page/notif
 import { SignUpComponent } from './dashboard/authentication/sign-up/sign-up.component';
 import { AdminNewsComponent } from './dashboard/news/news.component';
 import { ForgotPasswordComponent } from './dashboard/authentication/forgot-password/forgot-password.component';
+import { CreateSubscribersComponent } from './dashboard/subscribers/create-edit-subcribers/create.subsbcribers';
 
 
 export const routes: Routes = [
@@ -121,6 +122,10 @@ export const routes: Routes = [
 
 
       { path: 'subscribers', component: SubscribersComponent },
+      { path: 'create-subscriber', component: CreateSubscribersComponent },
+      { path: 'edit-subscriber/:id', component: CreateSubscribersComponent },
+
+
       { path: 'events', component: EventsComponent },
       { path: 'notifications', component: NotificationsPageComponent },
       { path: 'admin-news', component: AdminNewsComponent },

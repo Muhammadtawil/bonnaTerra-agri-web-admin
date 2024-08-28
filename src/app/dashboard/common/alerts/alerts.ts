@@ -35,26 +35,33 @@ export const AssignTaskAlert = () => {
   });
 };
 
-export const deleteAlert =async({ deleteMethod }: any) => {
-  return await Swal.fire({
-    title: "Are you sure?",
-    text: "You won't be able to revert this!",
-    icon: "warning",
-    showCancelButton: true,
-    confirmButtonColor: "#3085d6",
-    cancelButtonColor: "#d33",
-    confirmButtonText: "Yes, delete it!",
-    focusConfirm: true,
-    allowEscapeKey:true
-    
-  }).then((result) => {
-    if (result.isConfirmed && result.value === true) {
-      console.log(result)
- deleteMethod();
-      Swal.fire("Deleted!", "Your task has been deleted.", "success");
+
+export const deleteAlert = async (deleteMethod: () => Promise<any>) => {
+  try {
+    const result = await Swal.fire({
+      title: 'Are you sure?',
+      text: "You won't be able to revert this!",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Yes, delete it!',
+      focusConfirm: true,
+      allowEscapeKey: true,
+    });
+
+    if (result.isConfirmed) {
+      await deleteMethod();
+      Swal.fire('Deleted!', 'Your task has been deleted.', 'success');
+      return true; // Indicate success
     }
-  });
+    return false; // Indicate cancellation
+  } catch (error) {
+    Swal.fire('Error!', 'There was a problem deleting the subscriber.', 'error');
+    return false; // Indicate failure
+  }
 };
+
 
 export const LoginAlert = ({ userName }: any) => {
   Swal.fire({
