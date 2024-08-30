@@ -104,7 +104,7 @@
           <mat-card-content>
             <div class="image position-relative border-radius">
               <a routerLink="/ecommerce-page/product-details" class="d-block border-radius">
-                <img src="{{product.productImageUrl}}" class="border-radius transition" alt="product-image">
+                <img src="{{product.productImageUrl}}" class="border-radius transition" alt="product">
               </a>
               <a mat-fab >
                 <mat-card-subtitle>
@@ -120,7 +120,7 @@
                         
                         
                     
-                        <button mat-menu-item>
+                        <button mat-menu-item (click)="onDelete(product.id)">
                             Remove
                         </button>
                     </mat-menu>

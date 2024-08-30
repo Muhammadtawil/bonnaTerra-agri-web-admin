@@ -38,6 +38,9 @@ import { SignUpComponent } from './dashboard/authentication/sign-up/sign-up.comp
 import { AdminNewsComponent } from './dashboard/news/news.component';
 import { ForgotPasswordComponent } from './dashboard/authentication/forgot-password/forgot-password.component';
 import { CreateSubscribersComponent } from './dashboard/subscribers/create-edit-subcribers/create.subsbcribers';
+import { TestimonialsComponent } from './components/testimonials/testimonials.component';
+import { AdminTestimonialsComponent } from './dashboard/testimonials/testimonials-list.component';
+import { CreateTestimonilasComponent } from './dashboard/testimonials/create-testimonials/create-testimonial';
 
 
 export const routes: Routes = [
@@ -125,6 +128,9 @@ export const routes: Routes = [
       { path: 'create-subscriber', component: CreateSubscribersComponent },
       { path: 'edit-subscriber/:id', component: CreateSubscribersComponent },
 
+      { path: 'testimonials', component: AdminTestimonialsComponent },
+      { path: 'create-testimonial', component: CreateTestimonilasComponent },
+      { path: 'edit-testimonial/:id', component: CreateTestimonilasComponent },
 
       { path: 'events', component: EventsComponent },
       { path: 'notifications', component: NotificationsPageComponent },

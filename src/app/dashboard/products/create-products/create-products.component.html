@@ -78,15 +78,17 @@
                                 <input type="file"  class="file-uploader" (change)="onFileSelect($event)" accept="image/*">
                             </div>
                         </div> -->
-                        <div class="mb-25">
+                        <div class="mb-25" >
                             <label class="main-label d-block lh-1 text-black">
                               Upload New Product Images
                             </label>
+                        
                             <file-upload
                               formControlName="files"
                               class="file-uploader"
                               [multiple]="true"
                               [animation]="false"
+                              
                             ></file-upload>
                           </div>
                     </div>
@@ -98,11 +100,17 @@
                 <!-- Category & Price -->
                 <div class="col-lg-4">
                     <h5 class="title mt-0">Product Category & Price</h5>
+                 <!-- Current Product Image -->
+<div *ngIf="mode === 'edit' && productImageUrl" class="col-sm-12">
+    <label class="main-label d-block lh-1 text-black">Current Product Image</label>
+    <img [src]="productImageUrl" alt="Current Product" class="img-fluid border rounded" style="height: 250px; object-fit: cover;width: 100%;">
+</div>
+
                     <div class="row">
                         <!-- Category -->
                         <div class="col-sm-6 col-lg-12">
                             <div class="mb-25">
-                                <label class="main-label d-block lh-1 text-black">Category</label>
+                                <label class="main-label d-block lh-1 text-black" style="padding-top: 20px;">Category</label>
                                 <mat-form-field>
                                     <mat-label>Select Category</mat-label>
                                     <mat-select formControlName="categoryId">

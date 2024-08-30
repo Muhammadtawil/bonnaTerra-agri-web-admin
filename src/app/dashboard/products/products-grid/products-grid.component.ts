@@ -13,6 +13,7 @@ import { CommonModule } from '@angular/common';
 import { CategoriesServices } from '../../../services/categoris.services';
 import { CategoryInetrface, GetProductInterface } from '../../../services/interfaces';
 import { MatMenuModule } from '@angular/material/menu';
+import { deleteAlert } from '../../common/alerts/alerts';
 
 @Component({
   selector: 'admin-products-grid',
@@ -114,5 +115,16 @@ export class ProductsGridComponent implements OnInit {
   
   trackByCategoryId(index: number, category: CategoryInetrface) {
     return category.id;
+  }
+
+  async onDelete(id: string) {
+    const deleteMethod = () => this.productService.deleteProduct(id).toPromise();
+
+    const isDeleted = await deleteAlert(deleteMethod);
+
+    if (isDeleted) {
+      // Refresh the subscribers list if deletion was confirmed
+      this.getAllProducts();
+    }
   }
 }

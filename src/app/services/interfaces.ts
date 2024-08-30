@@ -39,7 +39,57 @@ export interface SubscriberInterface{
   id: string;
   subscriberEmail: string;
   subscriberName: string;
-  } 
+} 
+  
+export interface TestimonialInterface{
+  testimonialId: string;
+  senderName: string;
+  senderPosition: string;
+  testimonialContent: string;
+  senderImageUrl: string;
+  isFlag: boolean;
+
+}
+
+export interface SellerInterFace{
+  id: string;
+  sellerName: string;
+  sellerPhone: string;
+  sellerEmail: string;
+  sellerWebsite: string;
+  sellerOffer: string;
+
+}
+
+
+export interface CustomerInteface{
+  id: string;
+  customerName: string;
+  customerJob: string;
+  customerPhone: string;
+  customerAge: number;
+  customerEmail: string;
+  nationality: string;
+  address: string;
+  customerNotes: string;
+  createdAt: Date;
+  
+}
+
+
+export interface GetCustomerInteface{
+  id: string;
+  customerName: string;
+  customerJob: string;
+  customerPhone: string;
+  customerAge: number;
+  customerEmail: string;
+  nationality: string;
+  address: string;
+  customerNotes: string;
+  createdAt: Date;
+  preferredProducts: ProductInterface[];
+}
 
   export const months = [
     { value: 1, name: 'January' },

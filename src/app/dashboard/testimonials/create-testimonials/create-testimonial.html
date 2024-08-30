@@ -1,0 +1,136 @@
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        {{ mode === 'create' ? 'Add New testimonial' : 'Edit testimonial' }}
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            testimonials
+        </li>
+        <li class="breadcrumb-item position-relative">
+          create testimonials
+        </li>
+        <li class="breadcrumb-item position-relative">
+            {{ mode === 'create' ? 'Create testimonial' : 'Edit testimonial' }}
+        </li>
+    </ol>
+</div>
+
+<!-- Create testimonials -->
+<mat-card
+    class="daxa-card create-product-card mb-25 border-radius bg-white border-none d-block"
+    [class.rtl-enabled]="themeService.isRTLEnabled()"
+>
+    <mat-card-content>
+        <form [formGroup]="testimonialForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h5 class="title mt-0">
+                        {{ mode === 'create' ? 'Add New testimonial' : 'Edit testimonial' }}
+                    </h5>
+                    <div class="row">
+                        <!-- Name -->
+                        <div class="col-sm-6">
+                            <div class="mb-25">
+                                <label class="main-label d-block lh-1 text-black">
+                                    Name
+                                </label>
+                                <mat-form-field>
+                                    <mat-label>Product title</mat-label>
+                                    <input matInput placeholder="E.g. Hand Watch" formControlName="senderName">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <!-- Position -->
+                        <div class="col-sm-6">
+                            <div class="mb-25">
+                                <label class="main-label d-block lh-1 text-black">
+                                    Position
+                                </label>
+                                <mat-form-field>
+                                    <mat-label>Position</mat-label>
+                                    <input matInput placeholder="E.g. Hand Watch" formControlName="senderPosition">
+                                </mat-form-field>
+                            </div>
+                        </div>
+                        
+                        <!-- Description -->
+                        <div class="col-sm-12">
+                            <div class="mb-25">
+                                <label class="main-label d-block lh-1 text-black">Testimonial Content</label>
+                                <mat-form-field appearance="fill">
+                                    <mat-label>Testimonial Content</mat-label>
+                                    <textarea matInput formControlName="testimonialContent" rows="5" placeholder="Enter Content here"></textarea>
+                                </mat-form-field>
+                            </div>
+                        </div>
+
+                        <div class="mb-25" >
+                            <label class="main-label d-block lh-1 text-black">
+                              Upload New Image for testimonial provider
+                            </label>
+                        
+                            <file-upload
+                              formControlName="files"
+                              class="file-uploader"
+                              [multiple]="true"
+                              [animation]="false"
+                              
+                            ></file-upload>
+                          </div>
+                    </div>
+                </div>
+
+           
+         
+                
+                <!-- Category & Price -->
+                <div class="col-lg-4">
+                    <h5 class="title mt-0">Publishing</h5>
+                 <!-- Current Product Image -->
+<div *ngIf="mode === 'edit' && senderImageUrl" class="col-sm-12">
+    <label class="main-label d-block lh-1 text-black">Current Sender Image</label>
+    <img [src]="senderImageUrl" alt="Current Product" class="img-fluid border rounded" style="height: 250px; object-fit: cover;width: 100%;">
+</div>
+
+                    <div class="row">
+              
+
+
+           
+                        
+                        <!-- Draft -->
+                   
+                        <div class="col-sm-6 col-lg-12">
+                            <div class="mb-25">
+                                <label class="main-label d-block lh-1 text-black">Draft</label>
+                                <mat-form-field>
+                                    <mat-label>Publish</mat-label>
+                                    <mat-select formControlName="isFlag">
+                                      <mat-option [value]="true">Yes</mat-option>
+                                      <mat-option [value]="false">No</mat-option>
+                                    </mat-select>
+                                  </mat-form-field>
+                            </div>
+                        </div>
+                     
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Buttons -->
+            <div class="btn-box">
+                <button mat-button type="submit">
+                    {{ mode === 'create' ? 'Create testimonial' : 'Update testimonial' }}
+                </button>
+            </div>
+        </form>
+    </mat-card-content>
+</mat-card>

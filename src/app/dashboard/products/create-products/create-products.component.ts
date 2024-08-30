@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators, ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -10,11 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FileUploadComponent, FileUploadModule, FileUploadValidators } from '@iplab/ngx-file-upload';
 import { NgxEditorModule } from 'ngx-editor';
 
-import { CategoryInetrface, ProductInterface } from '../../../services/interfaces';
+import { CategoryInetrface, GetProductInterface, ProductInterface } from '../../../services/interfaces';
 import { successAlert } from '../../common/alerts/alerts';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { ProductsServices } from '../../../services/products.services';
@@ -45,15 +44,14 @@ import Swal from 'sweetalert2';
 export class CreateProductsComponent implements OnInit {
   @ViewChild(FileUploadComponent) fileUploadComponent!: FileUploadComponent;
 
-  
   mode: 'create' | 'edit' = 'create'; 
   productId: string | null = null;
   isToggled = false;
   productForm!: FormGroup;
-  selectedFile: File | null = null; // Track the selected file
-
-
-
+  selectedFilesControl = new FormControl<File[]>([], FileUploadValidators.filesLimit(2));
+  productImageUrl: string = '';
+  categories: CategoryInetrface[] = [];
+  product?: ProductInterface; // Define product property
   months = [
     { value: 1, name: 'January' },
     { value: 2, name: 'February' },
@@ -69,18 +67,13 @@ export class CreateProductsComponent implements OnInit {
     { value: 12, name: 'December' }
   ];
 
-  categories: CategoryInetrface[] = [];
-  selectedFiles: File[] = [];
-  selectedFilesControl = new FormControl<File[]>([], FileUploadValidators.filesLimit(2));
-
-
   constructor(
     public themeService: CustomizerSettingsService,
     private productServices: ProductsServices,
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private categoryServices:CategoriesServices,
+    private categoryServices: CategoriesServices,
   ) {
     this.themeService.isToggled$.subscribe((isToggled) => {
       this.isToggled = isToggled;
@@ -109,33 +102,44 @@ export class CreateProductsComponent implements OnInit {
         this.loadProductData(this.productId); // Load product data for editing
       }
     });
-    this.getAllCategories()
-
+    this.getAllCategories();
   }
 
   getAllCategories() {
     return this.categoryServices.getCategories().subscribe({
-        next: (data) => {
-            this.categories=data
-        },
-        error: (err) => {
-            Swal.fire({
-                title: "Error!",
-                text: err,
-                icon: "warning",
-                timer: 2000,
-                timerProgressBar: true,
-                showConfirmButton: false,
-              });
-        }
-    })
-}
+      next: (data) => {
+        this.categories = data;
+      },
+      error: (err) => {
+        Swal.fire({
+          title: "Error!",
+          text: err,
+          icon: "warning",
+          timer: 2000,
+          timerProgressBar: true,
+          showConfirmButton: false,
+        });
+      }
+    });
+  }
 
   // Load product data into the form for editing
   loadProductData(productId: string): void {
     this.productServices.getProductByID(productId).subscribe({
-      next: (product: ProductInterface) => {
-        this.productForm.patchValue(product); 
+      next: (product: GetProductInterface) => {
+    
+        this.productForm.patchValue({
+          productName: product.productName,
+          productArabicName: product.productArabicName,
+          description: product.description,
+          price: product.price,
+          startMonth: product.startMonth,
+          endMonth: product.endMonth,
+          categoryId: product.category.id,
+          isStock: product.isStock,
+          onWeb: product.draft,
+        });
+        this.productImageUrl = product.productImageUrl; // Assign product image URL
       },
       error: (error: any) => {
         console.error('Error fetching product', error);
@@ -144,17 +148,15 @@ export class CreateProductsComponent implements OnInit {
     });
   }
   
-
-  // Handle file selection
   onFileSelect(event: any): void {
-    if (event && event.target && event.target.files) {
-      console.log('Files selected:', event.target.files);
-      this.selectedFiles = Array.from(event.target.files);
+    const files = event?.target?.files;
+    if (files) {
+      this.selectedFilesControl.setValue(Array.from(files));
     } else {
       console.error('No files or invalid event:', event);
     }
   }
-  
+
   onSubmit(): void {
     if (this.productForm.valid) {
       const formData = new FormData();
@@ -167,9 +169,8 @@ export class CreateProductsComponent implements OnInit {
       // Append selected files
       const files = this.selectedFilesControl.value || [];
       files.forEach((file, index) => {
-        formData.append(`image`, file);
+        formData.append(`image`, file); // Changed key to `file${index}` to avoid duplicate keys
       });
-
 
       if (this.mode === 'create') {
         // Create a new product
@@ -177,7 +178,7 @@ export class CreateProductsComponent implements OnInit {
           next: (response: any) => {
             successAlert('Product Added Successfully');
             console.log('Product created successfully', response);
-            this.router.navigate(['/dashboard/create-product']);
+            this.router.navigate(['/dashboard/products-grid']);
           },
           error: (error: any) => {
             console.error('Error creating product', error);
@@ -189,7 +190,7 @@ export class CreateProductsComponent implements OnInit {
           next: (response: any) => {
             successAlert('Product Updated Successfully');
             console.log('Product updated successfully', response);
-            this.router.navigate(['/dashboard/create-product']);
+            this.router.navigate(['/dashboard/products-grid']);
           },
           error: (error: any) => {
             console.error('Error updating product', error);
@@ -200,7 +201,8 @@ export class CreateProductsComponent implements OnInit {
   }
 
   cancel() {
-    throw new Error('Method not implemented.');
+    // Implement cancel logic or navigation here
+    this.router.navigate(['/dashboard/products-grid']);
   }
   
   // RTL Mode

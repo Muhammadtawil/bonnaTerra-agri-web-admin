@@ -90,26 +90,11 @@
                                 </a>
                             </li>
                             <li class="sidemenu-item">
-                                <a routerLink="/dashboard/product-details" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Product Details
-                                </a>
-                            </li>
-                            <li class="sidemenu-item">
                                 <a routerLink="/dashboard/create-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
                                     Create Product
                                 </a>
                             </li>
-                            <li class="sidemenu-item">
-                                <a routerLink="/dashboard/edit-product" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Edit Product
-                                </a>
-                            </li>
-               
-                            <li class="sidemenu-item">
-                                <a routerLink="/dashboard/products-reviews" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}" class="sidemenu-link">
-                                    Reviews
-                                </a>
-                            </li>
+                   
                  
                         </ul>
                     </mat-expansion-panel>
@@ -223,7 +208,14 @@
                             Subscribers
                         </span>
                     </a>
-                
+                    <a routerLink="/dashboard/testimonials" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                        <i class="material-symbols-outlined">
+                            feedback
+                        </i>
+                        <span class="title">
+                            Testimonials
+                        </span>
+                    </a>
                     <a routerLink="/dashboard/user-profile" class="sidebar-menu-link" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
                         <i class="material-symbols-outlined">
                             account_circle

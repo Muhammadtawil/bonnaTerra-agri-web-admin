@@ -79,9 +79,6 @@ export class SubscribersComponent implements AfterViewInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  deleteSubscriber(subscriber: SubscriberInterface) {
-    // Implement your delete logic here
-  }
 
   toggleAllRows() {
     if (this.isAllSelected()) {

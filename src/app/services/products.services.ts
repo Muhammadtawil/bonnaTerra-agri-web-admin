@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { catchError, throwError } from 'rxjs';
-import { GetProductInterface, ProductInterface } from './interfaces';
+import { GetProductInterface } from './interfaces';
 
 @Injectable({
   providedIn: 'root',
@@ -21,7 +21,7 @@ export class ProductsServices {
   // Get a product by ID
   getProductByID(productId: string) {
     return this.http
-      .get<ProductInterface>(`${this.productsUrl}/${productId}`)
+      .get<GetProductInterface>(`${this.productsUrl}/${productId}`)
       .pipe(catchError(this.handleError));
   }
 

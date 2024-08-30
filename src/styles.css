@@ -21,14 +21,13 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace,monospace;
+  font-family: monospace;
   font-size: 1rem
 }
 abbr[title] {
   border-bottom: none;
   text-decoration: underline;
   -webkit-text-decoration: underline dotted;
-          text-decoration: underline dotted
 }
 b,
 strong {
@@ -8760,6 +8759,4 @@ html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
 
-/* // Dark CSS */
-/* @import "./app/dashboard/styles/_dark"; */
 

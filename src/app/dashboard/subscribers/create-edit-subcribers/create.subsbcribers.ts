@@ -11,9 +11,9 @@ import { MatSelectModule } from '@angular/material/select';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { FileUploadModule } from '@iplab/ngx-file-upload';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
-import { deleteAlert, successAlert } from '../../common/alerts/alerts';
-import { CategoryInetrface, SubscriberInterface } from '../../../services/interfaces';
 import { SubscribersServices } from '../../../services/subscribers.services';
+import { successAlert } from '../../common/alerts/alerts';
+import { SubscriberInterface } from '../../../services/interfaces';
 
 @Component({
   selector: 'app-create-subscriber',

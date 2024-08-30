@@ -40,6 +40,12 @@ export class HeaderComponent {
     toggle() {
         this.toggleService.toggle();
     }
+    onKeyDown(event: KeyboardEvent): void {
+        if (event.key === 'Enter' || event.key === ' ') {
+          this.toggle();
+          event.preventDefault(); // Prevent default action like scrolling.
+        }
+      }
 
     // Header Sticky
     isSticky: boolean = false;

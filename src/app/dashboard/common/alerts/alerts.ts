@@ -35,6 +35,16 @@ export const AssignTaskAlert = () => {
   });
 };
 
+export const ErrorAlert = (err:string) => {
+  Swal.fire({
+    title: 'Error!',
+    text: err,
+    icon: 'warning',
+    timer: 2000,
+    timerProgressBar: true,
+    showConfirmButton: false,
+  });
+}
 
 export const deleteAlert = async (deleteMethod: () => Promise<any>) => {
   try {
