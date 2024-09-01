@@ -17,8 +17,14 @@ export class SellerServices {
       .pipe(catchError(this.handleError));
   }
 
+  getSellerById(sellerId: string) {
+    return this.http
+    .get<SellerInterFace>(`${this.sellersURL}/${sellerId}`,)
+    .pipe(catchError(this.handleError));
+  }
+
   createSeller(sellerData: {
-    sellerName: string;
+    SellerName: string;
     sellerEmail: string;
     sellerOffer: string;
     sellerWebsite: string;

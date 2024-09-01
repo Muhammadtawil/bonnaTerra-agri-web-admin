@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { httpInject } from './httpclient';
 import { CategoryInetrface } from './interfaces';
 import { catchError, throwError } from 'rxjs';
 import { HttpClient } from '@angular/common/http';

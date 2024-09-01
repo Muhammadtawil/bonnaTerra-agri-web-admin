@@ -1,1 +1,186 @@
-<p>create-customer works!</p>
+<!-- Breadcrumb -->
+<div class="breadcrumb-card mb-25 d-md-flex align-items-center justify-content-between">
+    <h5 class="mb-0">
+        {{ mode === 'create' ? 'Add New Customer' : 'Edit Customer' }}
+    </h5>
+    <ol class="breadcrumb list-unstyled mt-0 mb-0 pl-0">
+        <li class="breadcrumb-item position-relative">
+            <a routerLink="/" class="d-inline-block position-relative">
+                <i class="ri-home-8-line"></i>
+                Dashboard
+            </a>
+        </li>
+        <li class="breadcrumb-item position-relative">
+            Customers
+        </li>
+        <li class="breadcrumb-item position-relative">
+            {{ mode === 'create' ? 'Create Customer' : 'Edit Customer' }}
+        </li>
+    </ol>
+</div>
+
+<mat-stepper #stepper>
+    <mat-step>
+        <ng-template matStepLabel>
+            Step 1
+        </ng-template>
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                           Customer Name
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Customer Name
+                            </mat-label>
+                            <input matInput placeholder="E.g. Mateo" formControlName="customerName">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                            Position
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                            Position
+                            </mat-label>
+                            <input matInput placeholder="E.g. Luca" formControlName="customerJob">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                            Email Address
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter email address
+                            </mat-label>
+                            <input matInput placeholder="E.g. hello@daxa.com" formControlName="customerEmail">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                            Phone Number
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter phone number
+                            </mat-label>
+                            <input matInput placeholder="E.g. +123 452183" formControlName="customerPhone">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                      <label class="main-label d-block lh-1 text-black">
+                        Age
+                      </label>
+                      <mat-form-field>
+                        <mat-label>
+                          Age
+                        </mat-label>
+                        <input matInput type="number" placeholder="E.g. 30" formControlName="customerAge" min="0" step="1">
+                      </mat-form-field>
+                    </div>
+                  </div>
+                  
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                            Address
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter address
+                            </mat-label>
+                            <input matInput placeholder="E.g. Amsterdam" formControlName="address">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6 col-sm-6">
+                    <div class="mb-20">
+                        <label class="main-label d-block lh-1 text-black">
+                            Nationality
+                        </label>
+                        <mat-form-field>
+                            <mat-label>
+                                Enter country
+                            </mat-label>
+                            <input matInput placeholder="E.g. Netherlands" formControlName="nationality">
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button mat-flat-button matStepperNext class="daxa">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>
+            Step 2
+        </ng-template>
+        <form [formGroup]="customerForm" >
+            <div class="row">
+                <label class="main-label d-block lh-1 text-black">
+                    Preferred Products help you to send the best offers
+                </label>
+                <div class="col-md-6 col-xxl-4">
+                    <h5>Preferred Products</h5>
+                    <mat-form-field>
+                        <mat-label>Toppings</mat-label>
+                        <!-- Bind the formControlName here -->
+                        <mat-select formControlName="preferredProducts" multiple>
+                            <mat-select-trigger>
+                              {{ getSelectedProductsLabel() }}
+                            </mat-select-trigger>
+                            <mat-option *ngFor="let product of productsList" [value]="product.id">
+                              {{ product.productName }}
+                            </mat-option>
+                          </mat-select>
+                          
+                    </mat-form-field>
+                </div>
+
+                
+            </div>
+
+            
+            <div>
+                <button mat-flat-button matStepperPrevious class="mr-15">Back</button>
+                <button mat-flat-button matStepperNext class="daxa">Next</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>
+            Step 3
+        </ng-template>
+        <form [formGroup]="customerForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="mb-25">
+                        <label class="main-label d-block lh-1 text-black">Additional Notes</label>
+                        <mat-form-field appearance="fill">
+                            <mat-label>Additional Notes</mat-label>
+                            <textarea matInput formControlName="customerNotes" rows="5" placeholder="Enter description here"></textarea>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div>
+                <button mat-flat-button matStepperPrevious class="mr-15">Back</button>
+                <button mat-flat-button class="daxa mr-15" type="submit">     {{ mode === 'create' ? 'Create Customer' : 'Update Customer' }}</button>
+            </div>
+        </form>
+    </mat-step>
+
+</mat-stepper>

@@ -21,7 +21,7 @@ export class TestimonialsServices {
     // Make the HTTP GET request with headers
     return this.http
       .get<TestimonialInterface[]>(this.testimonialsUrl, {
-        headers: this.headers,
+        withCredentials: true,
       })
       .pipe(catchError(this.handleError));
   }
@@ -29,7 +29,7 @@ export class TestimonialsServices {
   getTestiminialByUd(testimonialId: string) {
     return this.http
       .get<TestimonialInterface>(`${this.testimonialsUrl}/${testimonialId}`, {
-        headers: this.headers,
+        withCredentials: true,
       })
       .pipe(catchError(this.handleError));
   }

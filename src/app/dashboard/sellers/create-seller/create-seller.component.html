@@ -11,13 +11,10 @@
             </a>
         </li>
         <li class="breadcrumb-item position-relative">
-            E-Commerce
-        </li>
-        <li class="breadcrumb-item position-relative">
             Sellers
         </li>
         <li class="breadcrumb-item position-relative">
-            Create Seller
+            {{ mode === 'create' ? 'Create Seller' : 'Edit Seller' }}
         </li>
     </ol>
 </div>
@@ -28,7 +25,7 @@
     [class.rtl-enabled]="themeService.isRTLEnabled()"
 >
     <mat-card-content>
-        <form>
+        <form [formGroup]="sellerForm" (ngSubmit)="onSubmit()">
             <div class="row">
                 <div class="col-md-4 col-sm-6">
                     <div class="mb-25">
@@ -39,20 +36,20 @@
                             <mat-label>
                                 Enter seller name
                             </mat-label>
-                            <input matInput>
+                            <input matInput placeholder="E.g Sami" formControlName="sellerName">
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="mb-25">
                         <label class="main-label d-block lh-1 text-black">
-                            Store Name
+                            Services 
                         </label>
                         <mat-form-field>
                             <mat-label>
-                                Enter store name
+                                Services
                             </mat-label>
-                            <input matInput>
+                            <input matInput placeholder="E.g Maintenance" formControlName="sellerOffer">
                         </mat-form-field>
                     </div>
                 </div>
@@ -65,7 +62,7 @@
                             <mat-label>
                                 Enter phone number
                             </mat-label>
-                            <input matInput>
+                            <input matInput placeholder="E.g Maintenance" formControlName="sellerPhone">
                         </mat-form-field>
                     </div>
                 </div>
@@ -78,147 +75,46 @@
                             <mat-label>
                                 Enter email address
                             </mat-label>
-                            <input matInput>
+                            <input matInput placeholder="E.g m@test.com" formControlName="sellerEmail">
                         </mat-form-field>
                     </div>
                 </div>
                 <div class="col-md-4 col-sm-6">
                     <div class="mb-25">
                         <label class="main-label d-block lh-1 text-black">
-                            Date of Birth
+                            Seller Website
                         </label>
                         <mat-form-field>
                             <mat-label>
                                 Enter date of birth
                             </mat-label>
-                            <input matInput>
+                            <input matInput placeholder="E.g www.test.com" formControlName="sellerWebsite">
                         </mat-form-field>
                     </div>
                 </div>
+          
+          
                 <div class="col-md-4 col-sm-6">
                     <div class="mb-25">
                         <label class="main-label d-block lh-1 text-black">
-                            City
+                         Address
                         </label>
                         <mat-form-field>
                             <mat-label>
-                                Select city
+                                Enter Address
                             </mat-label>
-                            <mat-select>
-                                <mat-option value="option1">
-                                    New York
-                                </mat-option>
-                                <mat-option value="option2">
-                                    Tokyo
-                                </mat-option>
-                                <mat-option value="option3">
-                                    London
-                                </mat-option>
-                                <mat-option value="option4">
-                                    Amsterdam
-                                </mat-option>
-                                <mat-option value="option5">
-                                    Paris
-                                </mat-option>
-                            </mat-select>
+                            <input matInput placeholder="E.g AlKoura,Zahleh" formControlName="sellerAddress">
                         </mat-form-field>
                     </div>
                 </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="mb-25">
-                        <label class="main-label d-block lh-1 text-black">
-                            Country
-                        </label>
-                        <mat-form-field>
-                            <mat-label>
-                                Select country
-                            </mat-label>
-                            <mat-select>
-                                <mat-option value="option1">
-                                    Switzerland
-                                </mat-option>
-                                <mat-option value="option2">
-                                    New Zealand
-                                </mat-option>
-                                <mat-option value="option3">
-                                    Germany
-                                </mat-option>
-                                <mat-option value="option4">
-                                    United States
-                                </mat-option>
-                                <mat-option value="option5">
-                                    Japan
-                                </mat-option>
-                                <mat-option value="option6">
-                                    Netherlands
-                                </mat-option>
-                                <mat-option value="option7">
-                                    Sweden
-                                </mat-option>
-                                <mat-option value="option8">
-                                    Canada
-                                </mat-option>
-                                <mat-option value="option9">
-                                    United Kingdom
-                                </mat-option>
-                                <mat-option value="option10">
-                                    Australia
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="mb-25">
-                        <label class="main-label d-block lh-1 text-black">
-                            ZIP / Postcode
-                        </label>
-                        <mat-form-field>
-                            <mat-label>
-                                Enter zip / postcode
-                            </mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="col-md-4 col-sm-6">
-                    <div class="mb-25">
-                        <label class="main-label d-block lh-1 text-black">
-                            Wallet Balance
-                        </label>
-                        <mat-form-field>
-                            <mat-label>
-                                Enter wallet balance
-                            </mat-label>
-                            <input matInput>
-                        </mat-form-field>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="mb-25">
-                        <label class="main-label d-block lh-1 text-black">
-                            Description
-                        </label>
-                        <div class="NgxEditor__Wrapper">
-                            <ngx-editor-menu [editor]="editor" [toolbar]="toolbar"></ngx-editor-menu>
-                            <ngx-editor [editor]="editor" [placeholder]="'Type here...'"></ngx-editor>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-12 col-sm-12">
-                    <div class="mb-25">
-                        <label class="main-label d-block lh-1 text-black">
-                            Upload Image
-                        </label>
-                        <file-upload class="file-uploader" [multiple]="multiple"></file-upload>
-                    </div>
-                </div>
+      
+    
             </div>
             <div class="btn-box">
-                <button mat-button>
-                    Create Seller
+                <button mat-button type="submit">
+                    {{ mode === 'create' ? 'Create Seller' : 'Update Seller' }}
                 </button>
-                <button mat-button>
+                <button mat-button routerLink="/dashboard/sellers">
                     Cancel
                 </button>
             </div>

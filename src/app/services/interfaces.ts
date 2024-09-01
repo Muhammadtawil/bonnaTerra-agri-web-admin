@@ -1,3 +1,4 @@
+
 export interface CategoryInetrface {
     id: string;
     categoryName:string,
@@ -58,6 +59,8 @@ export interface SellerInterFace{
   sellerEmail: string;
   sellerWebsite: string;
   sellerOffer: string;
+  sellerAddress: string;
+
 
 }
 

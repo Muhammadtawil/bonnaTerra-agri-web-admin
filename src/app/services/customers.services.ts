@@ -1,22 +1,28 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { SellerInterFace } from './interfaces';
+import { CustomerInteface, GetCustomerInteface } from './interfaces';
 import { catchError, throwError } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
-export class SellerServices {
+export class CustomerServices {
   constructor(private http: HttpClient) {}
 
   private customersURL = 'https://bonnaterra-backend.vercel.app/customers';
 
   getAllCustomers() {
     return this.http
-      .get<SellerInterFace[]>(this.customersURL)
+      .get<GetCustomerInteface[]>(this.customersURL)
       .pipe(catchError(this.handleError));
   }
 
+
+  getCustomerById(customerId: string) {
+    return this.http
+      .get<GetCustomerInteface>(`${this.customersURL}/${customerId}`)
+      .pipe(catchError(this.handleError));
+  }
   createCustomer(customerData: {
     customerName: string;
     customerJob: string;
@@ -32,7 +38,7 @@ export class SellerServices {
 
   //update
 
-  updateCustomer(customerId: string, sellerData: SellerInterFace) {
+  updateCustomer(customerId: string, sellerData: CustomerInteface) {
     return this.http
       .patch<any>(`${this.customersURL}/${customerId}`, sellerData)
       .pipe(catchError(this.handleError));

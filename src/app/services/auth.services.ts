@@ -14,11 +14,12 @@ export class AuthServices {
 
   // Method to perform login
   login(credentials: { userEmail: string, password: string }) {
-    return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
+    return this.http.post<any>(`${this.apiUrl}/login`, credentials, {
+      withCredentials: true, // Ensure cookies are sent with the request
+    }).pipe(
       catchError(this.handleError)
     );
   }
-
   // Method to get user info based on token
   getUserInfo() {
     const userId = localStorage.getItem('userId');

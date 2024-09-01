@@ -12,20 +12,18 @@ export class SubscribersServices {
   private token = localStorage.getItem('token');
   private headers = new HttpHeaders({
     'Content-Type': 'application/json',
-    Authorization: this.token ? `Bearer ${this.token}` : '',
   });
   constructor(private http: HttpClient) {}
 
   getAllSubscribers() {
-    // Set up the headers including the Bearer token if it exists
-
-    // Make the HTTP GET request with headers
     return this.http
       .get<SubscriberInterface[]>(this.subscribersUrl, {
-        headers: this.headers,
+        withCredentials: true,
+        headers:this.headers,
       })
       .pipe(catchError(this.handleError));
   }
+
 
   getSubscriberByUd(subscriberId: string) {
     return this.http

@@ -11,7 +11,6 @@ import { DashboardLayoutComponent } from './dashboard/dashboard-layout/dashboard
 import { ProductsListComponent } from './dashboard/products/products-list/products-list.component';
 import { CreateProductsComponent } from './dashboard/products/create-products/create-products.component';
 import { ProductDetailsComponent } from './dashboard/products/product-details/product-details.component';
-import { EditProductComponent } from './dashboard/products/edit-product/edit-product.component';
 import { CategoriesListComponent } from './dashboard/categories/categories-list/categories-list.component';
 import { CreateCategoryComponent } from './dashboard/categories/create-category/create-category.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -41,6 +40,7 @@ import { CreateSubscribersComponent } from './dashboard/subscribers/create-edit-
 import { TestimonialsComponent } from './components/testimonials/testimonials.component';
 import { AdminTestimonialsComponent } from './dashboard/testimonials/testimonials-list.component';
 import { CreateTestimonilasComponent } from './dashboard/testimonials/create-testimonials/create-testimonial';
+import { CreateCustomerComponent } from './dashboard/customers/create-customer/create-customer.component';
 
 
 export const routes: Routes = [
@@ -95,10 +95,14 @@ export const routes: Routes = [
 
       { path: 'sellers', component: SellersComponent },
       { path: 'create-seller', component: CreateSellerComponent },
+      { path: 'edit-seller/:id', component: CreateSellerComponent },
+
 
 
       { path: 'customers', component: CustomersComponent },
-      { path: 'create-customer', component: ReviewsComponent },
+      { path: 'create-customer', component: CreateCustomerComponent },
+      { path: 'edit-customer/:id', component: CreateCustomerComponent },
+
 
       {
         path: 'settings',
