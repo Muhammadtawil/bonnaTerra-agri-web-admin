@@ -1,5 +1,5 @@
 import { NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
@@ -15,8 +15,11 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { AdminBreadcrumbComponent } from '../../common/breadcrumb/breadcrumb.component';
-import { ELEMENT_DATA, PeriodicElement } from './todo.data';
 import { CreateTaskComponent } from "../create-task/create-task.component";
+import { TaskServices } from '../../../services/tasks.services';
+import { TaskInterface } from '../../../services/interfaces';
+import { MatPaginator } from '@angular/material/paginator';
+import { ErrorAlert } from '../../common/alerts/alerts';
 
 
 
@@ -44,32 +47,41 @@ import { CreateTaskComponent } from "../create-task/create-task.component";
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
-  displayedColumns: string[] = ['select', 'taskID', 'taskName', 'assignedTo', 'dueDate', 'priority', 'status', 'action'];
-  dataSource = new MatTableDataSource<PeriodicElement>(ELEMENT_DATA);
-  selection = new SelectionModel<PeriodicElement>(true, []);
-
-  /** Whether the number of selected elements matches the total number of rows. */
-  isAllSelected() {
-      const numSelected = this.selection.selected.length;
-      const numRows = this.dataSource.data.length;
-      return numSelected === numRows;
+  tasks: TaskInterface[] = [];
+  displayedColumns: string[] = ['taskName', 'assignedTo', 'dueDate', 'priority', 'status', 'action'];
+  dataSource = new MatTableDataSource<TaskInterface>(this.tasks);
+  selection = new SelectionModel<TaskInterface>(true, []);
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  isToggled = false;
+  mode: 'create' | 'edit' = 'create';
+  constructor(
+    public themeService: CustomizerSettingsService,
+    private taskService:TaskServices,
+  ) {
+      this.themeService.isToggled$.subscribe(isToggled => {
+          this.isToggled = isToggled;
+      });
+    this.getAllTasks()
   }
 
-  /** Selects all rows if they are not all selected; otherwise clear selection. */
-  toggleAllRows() {
-      if (this.isAllSelected()) {
-          this.selection.clear();
-          return;
-      }
-      this.selection.select(...this.dataSource.data);
+
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
   }
 
-  /** The label for the checkbox on the passed row */
-  checkboxLabel(row?: PeriodicElement): string {
-      if (!row) {
-          return `${this.isAllSelected() ? 'deselect' : 'select'} all`;
+
+
+  getAllTasks() {
+    this.taskService.getTasks().subscribe({
+      next: (data) => {
+        this.tasks = data;
+        this.dataSource.data = this.tasks;
+      },
+      error: (err) => {
+    ErrorAlert(err)
       }
-      return `${this.selection.isSelected(row) ? 'deselect' : 'select'} row ${row.taskID + 1}`;
+    });
   }
 
   // Search Filter
@@ -78,7 +90,7 @@ export class TodoListComponent {
       this.dataSource.filter = filterValue.trim().toLowerCase();
   }
   // isToggled
-    isToggled = false;
+    
     
   // Popup Trigger
   classApplied = false;
@@ -86,17 +98,12 @@ export class TodoListComponent {
   toggleClass() {
     this.classApplied = !this.classApplied;
   }
+
+
     
 
 
 
-  constructor(
-      public themeService: CustomizerSettingsService
-  ) {
-      this.themeService.isToggled$.subscribe(isToggled => {
-          this.isToggled = isToggled;
-      });
-  }
 
   // RTL Mode
   toggleRTLEnabledTheme() {

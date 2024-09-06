@@ -3,10 +3,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-import { RouterLink } from '@angular/router';
+import { RouterLink,Router } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { NgIf } from '@angular/common';
-import { Router } from '@angular/router';
 import { CustomizerSettingsService } from '../../customizer-settings/customizer-settings.service';
 import { AuthServices } from '../../../services/auth.services';
 
@@ -50,10 +49,10 @@ export class SignInComponent {
       this.authService.login(credentials).subscribe({
         next: (response) => {
           console.log('Login successful', response);
-          localStorage.setItem('token', response.accessToken);  // Save the token to localStorage
           localStorage.setItem('username', response.userName);  // If necessary
-          localStorage.setItem('userRole', response.UserRole);  // If necessary
+          localStorage.setItem('userRole', response.userRole);  // If necessary
           localStorage.setItem('userId', response.userId);
+          localStorage.setItem('userImage', response.userImageUrl);
           // Optionally fetch user info right after login
           this.authService.getUserInfo().subscribe({
             next: (userInfo) => {

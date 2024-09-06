@@ -94,6 +94,67 @@ export interface GetCustomerInteface{
   preferredProducts: ProductInterface[];
 }
 
+export interface UserInterface{
+  userId: string;
+  userEmail: string;
+  userName: string;
+  userPhone: number;
+  userBio: string;
+  userRole: string;
+  userImgUrl: string;
+  userFacebookUrl: string;
+  userLinkedInUrl: string;
+  userTwitterUrl: string;
+  userInstagramUrl: string;
+  userPosition: string;
+  createdAt: Date;
+  isTeam: boolean;
+  isOnline: boolean;
+  startDateExp: Date;
+}
+
+// src/todo/interfaces/task.interface.ts
+export interface TaskInterface {
+  taskId: string;
+  taskTitle: string;
+  taskStatus: TaskStatusEnum;
+  taskPriority: TaskPriorityEnum;
+  createdBy: string;
+  createdAt: Date;
+  taskDeadline?: Date;
+  user: UserInterface; // Assuming this is a reference to the User entity
+  assignedTaskId?: AssignedTasksInterface; // Assuming this is a reference to the AssignedTasks entity
+  assignedTo?: UserInterface[]; // List of assigned users
+  assignedTasks?: AssignedTasksInterface[]; // List of assigned tasks
+}
+
+export interface AssignedTasksInterface {
+  assignedTaskId: string;
+  taskId: string;
+  taskTitle: string;
+  taskStatus: TaskStatusEnum;
+  taskPriority: TaskPriorityEnum;
+  taskDeadline?: Date;
+  assignBy: string;
+  createdAt: Date;
+  assignedAt: Date;
+  assignedTo?: UserInterface[]; // List of users assigned to this task
+  tasks?: TaskInterface[]; // List of tasks associated with this assignment
+}
+
+export enum TaskStatusEnum {
+  IN_PROGRESS = 'IN_PROGRESS',
+  COMPLETED = 'COMPLETED',
+  NOT_COMPLETED = 'NOT_COMPLETED',
+}
+
+export enum TaskPriorityEnum {
+  HIGH = 'HIGH',
+  MEDIUM = 'MEDIUM',
+  LOW = 'LOW',
+}
+
+
   export const months = [
     { value: 1, name: 'January' },
     { value: 2, name: 'February' },

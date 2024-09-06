@@ -8,30 +8,31 @@
     <p>
         Update your photo and personal details here.
     </p>
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-sm-6">
             <div class="mb-25">
                 <label class="main-label d-block lh-1 text-black">
-                    First Name
+                  Name
                 </label>
                 <mat-form-field>
                     <mat-label>
-                        First name
+                        Name
                     </mat-label>
-                    <input matInput value="Mateo">
+                    <input matInput  placeholder="E.g. Muhammad" formControlName="userName">
                 </mat-form-field>
             </div>
         </div>
         <div class="col-sm-6">
             <div class="mb-25">
                 <label class="main-label d-block lh-1 text-black">
-                    Last Name
+                  Position
                 </label>
                 <mat-form-field>
                     <mat-label>
-                        Last name
+                        Position
                     </mat-label>
-                    <input matInput value="Luca">
+                    <input matInput  placeholder="E.g. Manager" formControlName="userPosition">
                 </mat-form-field>
             </div>
         </div>
@@ -44,7 +45,7 @@
                     <mat-label>
                         Email address
                     </mat-label>
-                    <input matInput value="mateo@daxa.com">
+                    <input matInput  placeholder="E.g.test@test.com" formControlName="userEmail">
                 </mat-form-field>
             </div>
         </div>
@@ -57,69 +58,7 @@
                     <mat-label>
                         Phone number
                     </mat-label>
-                    <input matInput value="+(555) 555-1234">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Location
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Location
-                    </mat-label>
-                    <input matInput value="Zuichi, Switzerland">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Street Address
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Street address
-                    </mat-label>
-                    <input matInput value="2445 Crosswind Drive">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Date Of Birth
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Date of birth
-                    </mat-label>
-                    <input matInput value="20 March 1999">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Gender
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Select
-                    </mat-label>
-                    <mat-select [(value)]="genderSelected">
-                        <mat-option value="option1">
-                            Male
-                        </mat-option>
-                        <mat-option value="option2">
-                            Female
-                        </mat-option>
-                        <mat-option value="option3">
-                            Custom
-                        </mat-option>
-                    </mat-select>
+                    <input type="text" matInput placeholder="+(555) 555-1234" formControlName="userPhone">
                 </mat-form-field>
             </div>
         </div>
@@ -132,7 +71,64 @@
                     <mat-label>
                         Write here....
                     </mat-label>
-                    <textarea matInput placeholder="E.g. It makes me feel..."></textarea>
+                    <textarea matInput placeholder="E.g. It makes me feel..." formControlName="userBio"></textarea>
+                </mat-form-field>
+            </div>
+        </div>
+        <h4>
+            Social Profile
+        </h4>
+        <p></p>
+        <div class="col-sm-6">
+            <div class="mb-25">
+                <label class="main-label d-block lh-1 text-black">
+                    Facebook
+                </label>
+                <mat-form-field>
+                    <mat-label>
+                        Facebook
+                    </mat-label>
+                    <input matInput placeholder="https://www.facebook.com/" formControlName="userFacebookUrl">
+                </mat-form-field>
+            </div>
+        </div>
+
+        <div class="col-sm-6">
+            <div class="mb-25">
+                <label class="main-label d-block lh-1 text-black">
+                    Linkedin
+                </label>
+                <mat-form-field>
+                    <mat-label>
+                        Linkedin
+                    </mat-label>
+                    <input matInput placeholder="https://www.linkedin.com/" formControlName="userLinkedInUrl">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-25">
+                <label class="main-label d-block lh-1 text-black">
+                    X-twitter
+                </label>
+                <mat-form-field>
+                    <mat-label>
+                        X-twitter
+                    </mat-label>
+                    <input matInput placeholder="https://twitter.com/" formControlName="userTwitterUrl">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="mb-25">
+                <label class="main-label d-block lh-1 text-black" >
+                    instagram
+                </label>
+                <mat-form-field>
+                    <mat-label>
+                        instagram
+                    </mat-label>
+                    <input matInput placeholder="https://www.instagram.com/" formControlName="userInstagramUrl">
                 </mat-form-field>
             </div>
         </div>
@@ -144,59 +140,23 @@
         This will be displayed on your profile.
     </p>
     <div class="mb-25">
-        <file-upload class="file-uploader" [multiple]="multiple"></file-upload>
+        <file-upload 
+        class="file-uploader" 
+        [multiple]="false"
+        formControlName="files"
+        >
+
+
+        </file-upload>
     </div>
-    <h4>
-        Socials Profile
-    </h4>
-    <p></p>
-    <div class="row">
-        <div class="col-sm-6 col-lg-4">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Facebook
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Facebook
-                    </mat-label>
-                    <input matInput value="https://www.facebook.com/">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Twitter
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Twitter
-                    </mat-label>
-                    <input matInput value="https://twitter.com/">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="col-sm-6 col-lg-4">
-            <div class="mb-25">
-                <label class="main-label d-block lh-1 text-black">
-                    Linkedin
-                </label>
-                <mat-form-field>
-                    <mat-label>
-                        Linkedin
-                    </mat-label>
-                    <input matInput value="https://www.instagram.com/">
-                </mat-form-field>
-            </div>
-        </div>
-    </div>
+
     <div class="btn-box">
-        <button mat-button>
+        <button mat-button type="submit">
             Update Profile
         </button>
         <button mat-button>
             Cancel
         </button>
     </div>
+</form>
 </div>

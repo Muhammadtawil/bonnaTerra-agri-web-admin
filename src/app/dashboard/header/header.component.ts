@@ -17,7 +17,8 @@ import { CustomizerSettingsService } from '../customizer-settings/customizer-set
 })
 export class HeaderComponent {
     userName = localStorage.getItem('username')
-    userRole=localStorage.getItem('userRole')
+    userRole = localStorage.getItem('userRole')
+    userImage=localStorage.getItem('userImage')
     // isSidebarToggled
     isSidebarToggled = false;
 

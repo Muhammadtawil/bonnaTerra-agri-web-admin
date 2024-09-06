@@ -145,7 +145,7 @@
             </li>
             <li>
                 <button mat-button [matMenuTriggerFor]="profileMenu" class="profile-menu-btn">
-                    <img src="../../../assets/images/admin.png" alt="profile">
+                    <img [src]="userImage ? userImage : '../../../assets/images/admin.png'" alt="profile">
                     <span class="status d-inline-block rounded-circle position-absolute"></span>
                 </button>
                 <mat-menu class="profile-menu-dropdown" #profileMenu="matMenu" xPosition="before">
@@ -153,7 +153,7 @@
                         [class.dark-menu]="themeService.isDark() || themeService.isHeaderDark()"
                     >
                         <div class="menu-header d-flex align-items-center">
-                            <img src="../../../assets/images/admin.png" alt="profile">
+                            <img [src]="userImage ? userImage : '../../../assets/images/admin.png'" alt="profile">
                             <div class="title">
                                 <a routerLink="/my-profile" class="d-inline-block fw-medium">
                                     {{ userName ? userName : 'Guest' }}
