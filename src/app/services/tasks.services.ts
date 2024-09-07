@@ -12,21 +12,40 @@ export class TaskServices {
 
   constructor(private http: HttpClient) {}
 
-  //  Get all tasks
+  //  Get all tasks related to user
   getTasks() {
     return this.http
-        .get<TaskInterface[]>(`${this.tasksUrl}/my-tasks`,{
+        .get<TaskInterface[]>(`${this.tasksUrl}/createdbyme`,{
           withCredentials:true
       })
       .pipe(catchError(this.handleError));
   }
+  // GEt all assigned Taks by the user 
+  getTasksAssignedByUser() {
+    return this.http
+    .get<TaskInterface[]>(`${this.tasksUrl}/assigned/by/me`,{
+      withCredentials:true
+  })
+  .pipe(catchError(this.handleError));
+  }
 
+    // GEt all assigned Taks by the user 
+    getTasksAssignedToUser() {
+      return this.http
+      .get<TaskInterface[]>(`${this.tasksUrl}/assigned/to/me`,{
+        withCredentials:true
+    })
+    .pipe(catchError(this.handleError));
+    }
+  
   // Get a task by ID
   getTaskByID(taskId: string) {
     return this.http
       .get<TaskInterface>(`${this.tasksUrl}/${taskId}`)
       .pipe(catchError(this.handleError));
   }
+
+
 
   // Create a task with FormData
   createTask(formData: FormData) {

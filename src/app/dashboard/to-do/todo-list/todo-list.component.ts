@@ -1,4 +1,4 @@
-import { NgIf } from '@angular/common';
+import { CommonModule, NgIf } from '@angular/common';
 import { Component, ViewChild } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
@@ -20,7 +20,7 @@ import { TaskServices } from '../../../services/tasks.services';
 import { TaskInterface } from '../../../services/interfaces';
 import { MatPaginator } from '@angular/material/paginator';
 import { ErrorAlert } from '../../common/alerts/alerts';
-
+import { MatChipsModule } from '@angular/material/chips';
 
 
 @Component({
@@ -41,37 +41,52 @@ import { ErrorAlert } from '../../common/alerts/alerts';
     MatDatepickerModule,
     MatNativeDateModule,
     AdminBreadcrumbComponent,
-      CreateTaskComponent,
-],
+    CreateTaskComponent,
+    CommonModule,
+    MatChipsModule,
+  ],
   templateUrl: './todo-list.component.html',
   styleUrl: './todo-list.component.scss',
 })
 export class TodoListComponent {
   tasks: TaskInterface[] = [];
-  displayedColumns: string[] = ['taskName', 'assignedTo', 'dueDate', 'priority', 'status', 'action'];
+  // Task types
+  isAssigned = false;
+  selectedView: 'regular' | 'assignedTo' | 'assignedBy' = 'regular';
+  
+  // Column definitions for each view
+  regulardisplayedColumns = ['taskName', 'dueDate', 'priority', 'status', 'action'];
+  assignedTodisplayedColumns = ['taskName', 'assigned To', 'dueDate', 'priority', 'status', 'action'];
+  assignedBydisplayedColumns = ['taskName', 'assigned By', 'dueDate', 'priority', 'status', 'action'];
+  
+  displayedColumns: string[] = this.regulardisplayedColumns;
+  
   dataSource = new MatTableDataSource<TaskInterface>(this.tasks);
   selection = new SelectionModel<TaskInterface>(true, []);
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  
   isToggled = false;
   mode: 'create' | 'edit' = 'create';
+  
   constructor(
     public themeService: CustomizerSettingsService,
-    private taskService:TaskServices,
+    private taskService: TaskServices,
   ) {
-      this.themeService.isToggled$.subscribe(isToggled => {
-          this.isToggled = isToggled;
-      });
-    this.getAllTasks()
+    this.themeService.isToggled$.subscribe(isToggled => {
+      this.isToggled = isToggled;
+    });
+    
+    this.getAllTasks();
+    this.getTasksAssignedByUser();
+    this.getTasksAssignedToUser();
   }
-
-
-
+  
   ngAfterViewInit() {
     this.dataSource.paginator = this.paginator;
   }
 
-
-
+  // Get all tasks from the service
   getAllTasks() {
     this.taskService.getTasks().subscribe({
       next: (data) => {
@@ -79,36 +94,75 @@ export class TodoListComponent {
         this.dataSource.data = this.tasks;
       },
       error: (err) => {
-    ErrorAlert(err)
+        ErrorAlert(err);
       }
     });
   }
 
-  // Search Filter
-  applyFilter(event: Event) {
-      const filterValue = (event.target as HTMLInputElement).value;
-      this.dataSource.filter = filterValue.trim().toLowerCase();
+  // Fetch tasks assigned to the user
+  getTasksAssignedToUser() {
+    this.taskService.getTasksAssignedToUser().subscribe({
+      next: (data) => {
+        this.tasks = data;
+        this.dataSource.data = this.tasks;
+      },
+      error: (err) => {
+        ErrorAlert(err);
+      }
+    });
   }
-  // isToggled
-    
-    
-  // Popup Trigger
-  classApplied = false;
 
+  // Fetch tasks assigned by the user
+  getTasksAssignedByUser() {
+    this.taskService.getTasksAssignedByUser().subscribe({
+      next: (data) => {
+        this.tasks = data;
+        this.dataSource.data = this.tasks;
+      },
+      error: (err) => {
+        ErrorAlert(err);
+      }
+    });
+  }
+
+  
+  // Method to switch between views: Regular, Assigned To, and Assigned By
+  switchTaskView(view: 'regular' | 'assignedTo' | 'assignedBy') {
+    this.selectedView = view;
+  
+    switch (view) {
+      case 'regular':
+        this.displayedColumns = this.regulardisplayedColumns;
+        this.dataSource = new MatTableDataSource<TaskInterface>(this.tasks);
+        break;
+      case 'assignedTo':
+        this.displayedColumns = this.assignedTodisplayedColumns;
+        this.getTasksAssignedToUser(); // Fetch tasks assigned to the user
+        break;
+      case 'assignedBy':
+        this.displayedColumns = this.assignedBydisplayedColumns;
+        this.getTasksAssignedByUser(); // Fetch tasks assigned by the user
+        break;
+    }
+  }
+  
+  // Apply search filter
+  applyFilter(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+  
+  // Toggle class for popup
+  classApplied = false;
+  
   toggleClass() {
     this.classApplied = !this.classApplied;
   }
 
-
-    
-
-
-
-
-  // RTL Mode
+  // Toggle RTL mode
   toggleRTLEnabledTheme() {
-      this.themeService.toggleRTLEnabledTheme();
+    this.themeService.toggleRTLEnabledTheme();
   }
 
-}
 
+}
