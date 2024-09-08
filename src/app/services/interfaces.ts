@@ -113,7 +113,12 @@ export interface UserInterface{
   startDateExp: Date;
 }
 
-// src/todo/interfaces/task.interface.ts
+export interface GetUsersInfoInterface{
+  userId: string;
+  userImgUrl: string;
+  userName: string;
+}
+
 export interface TaskInterface {
   taskId: string;
   taskTitle: string;
@@ -122,10 +127,9 @@ export interface TaskInterface {
   createdBy: string;
   createdAt: Date;
   taskDeadline?: Date;
-  user: UserInterface; // Assuming this is a reference to the User entity
-  assignedTaskId?: AssignedTasksInterface; // Assuming this is a reference to the AssignedTasks entity
-  assignedTo?: UserInterface[]; // List of assigned users
-  assignedTasks?: AssignedTasksInterface[]; // List of assigned tasks
+  isAssigned:boolean,
+  assignedTo?: string[];
+  assignedBy: string;
 }
 
 export interface AssignedTasksInterface {

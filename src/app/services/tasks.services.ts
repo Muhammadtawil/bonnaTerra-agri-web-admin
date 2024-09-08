@@ -23,7 +23,7 @@ export class TaskServices {
   // GEt all assigned Taks by the user 
   getTasksAssignedByUser() {
     return this.http
-    .get<TaskInterface[]>(`${this.tasksUrl}/assigned/by/me`,{
+    .get<TaskInterface[]>(`${this.tasksUrl}`,{
       withCredentials:true
   })
   .pipe(catchError(this.handleError));
@@ -32,7 +32,7 @@ export class TaskServices {
     // GEt all assigned Taks by the user 
     getTasksAssignedToUser() {
       return this.http
-      .get<TaskInterface[]>(`${this.tasksUrl}/assigned/to/me`,{
+      .get<TaskInterface[]>(`${this.tasksUrl}/assignedtome`,{
         withCredentials:true
     })
     .pipe(catchError(this.handleError));
@@ -41,7 +41,9 @@ export class TaskServices {
   // Get a task by ID
   getTaskByID(taskId: string) {
     return this.http
-      .get<TaskInterface>(`${this.tasksUrl}/${taskId}`)
+      .get<TaskInterface>(`${this.tasksUrl}/${taskId}`,{
+        withCredentials:true
+    })
       .pipe(catchError(this.handleError));
   }
 
@@ -50,21 +52,27 @@ export class TaskServices {
   // Create a task with FormData
   createTask(formData: FormData) {
     return this.http
-      .post<any>(this.tasksUrl, formData)
+      .post<any>(this.tasksUrl, formData,{
+        withCredentials:true
+    })
       .pipe(catchError(this.handleError));
   }
 
   // Method to update a task with FormData
   updateTask(taskId: string, formData: FormData) {
     return this.http
-      .patch<any>(`${this.tasksUrl}/${taskId}`, formData)
+      .patch<any>(`${this.tasksUrl}/${taskId}`, formData,{
+        withCredentials:true
+    })
       .pipe(catchError(this.handleError));
   }
 
   // Delete a task by ID
   deleteTask(taskId: string) {
     return this.http
-      .delete<any>(`${this.tasksUrl}/${taskId}`)
+      .delete<any>(`${this.tasksUrl}/${taskId}`,{
+        withCredentials:true
+    })
       .pipe(catchError(this.handleError));
   }
 

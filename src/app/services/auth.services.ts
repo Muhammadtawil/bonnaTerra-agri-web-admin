@@ -32,6 +32,18 @@ export class AuthServices {
       .pipe(catchError(this.handleError));
   }
 
+
+    // Method to get user info based on token
+    getUsersInfo() {
+      const userId = localStorage.getItem('userId');
+      if (!userId) {
+        return throwError(() => new Error('User is not authenticated.'));
+      }
+  
+      return this.http
+        .get<any>(`${this.apiUrl}/allusers`, { withCredentials: true })
+        .pipe(catchError(this.handleError));
+    }
   // update user
   updateUser(formData: FormData) {
     return this.http

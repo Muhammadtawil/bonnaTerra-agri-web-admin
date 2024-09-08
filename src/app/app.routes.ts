@@ -41,6 +41,7 @@ import { TestimonialsComponent } from './components/testimonials/testimonials.co
 import { AdminTestimonialsComponent } from './dashboard/testimonials/testimonials-list.component';
 import { CreateTestimonilasComponent } from './dashboard/testimonials/create-testimonials/create-testimonial';
 import { CreateCustomerComponent } from './dashboard/customers/create-customer/create-customer.component';
+import { ProductsComponent } from './components/products/products.component';
 
 
 export const routes: Routes = [
@@ -50,7 +51,7 @@ export const routes: Routes = [
 
   { path: 'about', component: AboutpageComponent },
 
-  // { path: 'category', component: ProductsComponent },
+  { path: 'category', component: ProductsComponent },
 
   { path: 'news', component: NewspageComponent},
 

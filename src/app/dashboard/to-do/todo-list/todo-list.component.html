@@ -7,6 +7,7 @@
 
 
 <!-- To Do List -->
+<!-- To Do List -->
 <mat-card class="daxa-card to-do-list-card mb-25 border-radius bg-white border-none d-block"
     [class.rtl-enabled]="themeService.isRTLEnabled()">
     <mat-card-header>
@@ -14,122 +15,100 @@
             <button mat-button class="text-daxa p-0 h-auto" (click)="toggleClass()">
                 + Add New Task
             </button>
-
         </mat-card-title>
         <mat-card-title>
             <mat-card-content>
-                <mat-chip-listbox aria-label="Fish selection">
+                <mat-chip-listbox aria-label="Task view selection">
                     <mat-chip-option selected="true" (click)="switchTaskView('regular')" [class.active]="selectedView === 'regular'">
                         My Tasks
                     </mat-chip-option>
-                    <mat-chip-option color="purple" (click)="switchTaskView('assignedTo')"
-                        [class.active]="selectedView === 'assignedTo'">Tasks Assigned to Me</mat-chip-option>
-                    <mat-chip-option color="warn" (click)="switchTaskView('assignedBy')" 
-                    [class.active]="selectedView === 'assignedBy'">Tasks Assigned by Me</mat-chip-option>
+                    <mat-chip-option (click)="switchTaskView('assignedTo')" [class.active]="selectedView === 'assignedTo'">
+                        Tasks Assigned to Me
+                    </mat-chip-option>
+                    <mat-chip-option (click)="switchTaskView('assignedBy')" [class.active]="selectedView === 'assignedBy'">
+                        Tasks Assigned by Me
+                    </mat-chip-option>
                 </mat-chip-listbox>
             </mat-card-content>
         </mat-card-title>
-
         <mat-card-title>
             <form class="search-box position-relative">
-                <i class="material-symbols-outlined">
-                    search
-                </i>
+                <i class="material-symbols-outlined">search</i>
                 <input type="text" class="input-search d-block w-100 border-none outline-0" placeholder="Search here..."
                     (keyup)="applyFilter($event)" #input>
             </form>
-
-
         </mat-card-title>
-
     </mat-card-header>
     <mat-card-content>
         <div class="to-do-list-table">
             <div class="table-responsive">
                 <table mat-table [dataSource]="dataSource">
 
-                    <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-                        <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-                        <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-                      </ng-container>
-
-                      
                     <!-- Task Name Column -->
-                    <ng-container >
-        
-                        <td mat-cell *matCellDef="let element">
-                            {{element.taskTitle}}
-                        </td>
+                    <ng-container matColumnDef="task Name">
+                        <th mat-header-cell *matHeaderCellDef> Task Name </th>
+                        <td mat-cell *matCellDef="let element"> {{element.taskTitle}} </td>
                     </ng-container>
 
                     <!-- Assigned To Column -->
-                    <ng-container matColumnDef="assignedTo">
-                        <th mat-header-cell *matHeaderCellDef>
-                            Assigned To
-                        </th>
+                    <ng-container matColumnDef="assigned To">
+                        <th mat-header-cell *matHeaderCellDef> Assigned To </th>
                         <td mat-cell *matCellDef="let element" class="text-black">
-                            {{element.assignedTo}}
+                          <div class="assigned-users">
+                            <ng-container *ngFor="let userId of element.assignedTo">
+                              <div class="image" *ngIf="usersMap[userId]">
+                                <span>{{ usersMap[userId].userName }}</span> <!-- Optional, to display name -->
+                              </div>
+                            </ng-container>
+                          </div>
                         </td>
-                    </ng-container>
+                      </ng-container>
+                      
+                    <!-- Assigned By Column -->
+                    <ng-container matColumnDef="assigned By">
+                        <th mat-header-cell *matHeaderCellDef> Assigned By </th>
+                        <td mat-cell *matCellDef="let element" class="text-black">
+                          <div class="assigned-users">
+                            <div class="image" *ngIf="usersMap[element.assignedBy]">
+                              <span>{{ usersMap[element.assignedBy].userName }}</span> <!-- Show the user's name -->
+                            </div>
+                          </div>
+                        </td>
+                      </ng-container>
+                      
 
                     <!-- Due Date Column -->
-                    <ng-container >
-                        <th mat-header-cell *matHeaderCellDef>
-                            Due Date
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element.taskDeadline| date:'dd/MM/yyyy'}}
-                        </td>
+                    <ng-container matColumnDef="dueDate">
+                        <th mat-header-cell *matHeaderCellDef> Due Date </th>
+                        <td mat-cell *matCellDef="let element"> {{element.taskDeadline | date: 'dd/MM/yyyy'}} </td>
                     </ng-container>
 
                     <!-- Priority Column -->
-                    <ng-container >
-                        <th mat-header-cell *matHeaderCellDef>
-                            Priority
-                        </th>
-                        <td mat-cell *matCellDef="let element">
-                            {{element.taskPriority}}
-                        </td>
+                    <ng-container matColumnDef="priority">
+                        <th mat-header-cell *matHeaderCellDef> Priority </th>
+                        <td mat-cell *matCellDef="let element"> {{element.taskPriority}} </td>
                     </ng-container>
 
                     <!-- Status Column -->
-                    <ng-container >
-                        <th mat-header-cell *matHeaderCellDef>
-                            Status
-                        </th>
+                    <ng-container matColumnDef="status">
+                        <th mat-header-cell *matHeaderCellDef> Status </th>
                         <td mat-cell *matCellDef="let element">
-                            <span class="daxa-badge in-progress d-inline-block">
-                                {{element.taskStatus}}
-                            </span>
-                            <!-- <span class="daxa-badge pending d-inline-block" *ngIf="element.status.pending">
-                                {{element.status.pending}}
-                            </span>
-                            <span class="daxa-badge completed d-inline-block" *ngIf="element.status.completed">
-                                {{element.status.completed}}
-                            </span>
-                            <span class="daxa-badge not-started d-inline-block" *ngIf="element.status.notStarted">
-                                {{element.status.notStarted}}
-                            </span> -->
+                            <span class="daxa-badge">{{element.taskStatus}}</span>
                         </td>
                     </ng-container>
 
                     <!-- Action Column -->
-                    <ng-container >
-                        <th mat-header-cell *matHeaderCellDef>
-                            Action
-                        </th>
+                    <ng-container matColumnDef="action">
+                        <th mat-header-cell *matHeaderCellDef> Action </th>
                         <td mat-cell *matCellDef="let element">
                             <div class="action-info">
-
-                                <button type="button" mat-button matTooltip="Edit" matTooltipPosition="above">
-                                    <i class="material-symbols-outlined">
-                                        edit
-                                    </i>
-                                </button>
-                                <button type="button" mat-button matTooltip="Delete" matTooltipPosition="above">
-                                    <i class="material-symbols-outlined">
-                                        delete
-                                    </i>
+                               <!-- Edit Button -->
+<button mat-button matTooltip="Edit" matTooltipPosition="above" (click)="editTask(element.taskId)">
+    <i class="material-symbols-outlined">edit</i>
+  </button>
+  
+                                <button mat-button matTooltip="Delete" matTooltipPosition="above" (click)="onDelete(element.taskId)">
+                                    <i class="material-symbols-outlined">delete</i>
                                 </button>
                             </div>
                         </td>
@@ -140,7 +119,7 @@
 
                     <!-- Row shown when there is no matching data. -->
                     <tr class="mat-row" *matNoDataRow>
-                        <td class="mat-cell" colspan="4">No data matching the filter "{{input.value}}"</td>
+                        <td class="mat-cell" colspan="7">No data matching the filter "{{input.value}}"</td>
                     </tr>
 
                 </table>
@@ -149,7 +128,6 @@
     </mat-card-content>
 </mat-card>
 
-
 <!-- Popup -->
 <div class="add-new-task-popup" [class.active]="classApplied" [class.rtl-enabled]="themeService.isRTLEnabled()">
     <div class="popup-dialog">
@@ -157,7 +135,7 @@
             <mat-card-header>
                 <mat-card-title>
                     <h5 class="mb-0">
-                        Add New Task
+                        {{ mode === 'create' ? 'Add New Tasks' : 'Edit Task' }}
                     </h5>
                 </mat-card-title>
                 <mat-card-subtitle>
@@ -167,6 +145,7 @@
                 </mat-card-subtitle>
             </mat-card-header>
             <mat-card-content>
+                <form [formGroup]="taskForm" (ngSubmit)="onSubmit()">
                 <div class="row">
                     <div class="col-md-12">
                         <label class="main-label d-block lh-1 text-black">
@@ -176,7 +155,7 @@
                             <mat-label>
                                 Task name
                             </mat-label>
-                            <input matInput placeholder="E.g. Hand Watch">
+                            <input matInput placeholder="E.g. Hand Watch" formControlName="taskTitle">
                         </mat-form-field>
                     </div>
                     <div class="col-md-6">
@@ -184,30 +163,13 @@
                             Assigned To
                         </label>
                         <mat-form-field>
-                            <mat-label>
-                                Select
-                            </mat-label>
-                            <mat-select>
-                                <mat-option value="option1">
-                                    Shawn Kennedy
-                                </mat-option>
-                                <mat-option value="option2">
-                                    Roberto Cruz
-                                </mat-option>
-                                <mat-option value="option3">
-                                    Juli Johnson
-                                </mat-option>
-                                <mat-option value="option4">
-                                    Catalina Engles
-                                </mat-option>
-                                <mat-option value="option5">
-                                    Louis Nagle
-                                </mat-option>
-                                <mat-option value="option6">
-                                    Michael Marquez
-                                </mat-option>
+                            <mat-label>Select</mat-label>
+                            <mat-select formControlName="assignedTo" multiple>
+                              <mat-option *ngFor="let user of usersList" [value]="user.userId">
+                                {{ user.userName }}
+                              </mat-option>
                             </mat-select>
-                        </mat-form-field>
+                          </mat-form-field>                          
                     </div>
                     <div class="col-md-6">
                         <label class="main-label d-block lh-1 text-black">
@@ -217,7 +179,7 @@
                             <mat-label>
                                 Choose a date
                             </mat-label>
-                            <input matInput [matDatepicker]="dueDate">
+                            <input matInput [matDatepicker]="dueDate" formControlName="taskDeadline">
                             <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
                             <mat-datepicker #dueDate></mat-datepicker>
                         </mat-form-field>
@@ -230,14 +192,14 @@
                             <mat-label>
                                 Select
                             </mat-label>
-                            <mat-select>
-                                <mat-option value="option1">
+                            <mat-select formControlName="taskPriority">
+                                <mat-option value="HIGH">
                                     High
                                 </mat-option>
-                                <mat-option value="option2">
+                                <mat-option value="MEDIUM">
                                     Medium
                                 </mat-option>
-                                <mat-option value="option3">
+                                <mat-option value="LOW">
                                     Low
                                 </mat-option>
                             </mat-select>
@@ -251,18 +213,15 @@
                             <mat-label>
                                 Select
                             </mat-label>
-                            <mat-select>
-                                <mat-option value="option1">
+                            <mat-select formControlName="taskStatus">
+                                <mat-option value="IN_PROGRESS">
                                     In Progress
                                 </mat-option>
-                                <mat-option value="option2">
-                                    Pending
+                                <mat-option value="NOT_COMPLETED">
+                                    Not Completed
                                 </mat-option>
-                                <mat-option value="option3">
+                                <mat-option value="COMPLETED">
                                     Completed
-                                </mat-option>
-                                <mat-option value="option4">
-                                    Not Started
                                 </mat-option>
                             </mat-select>
                         </mat-form-field>
@@ -272,10 +231,11 @@
                     <button mat-button (click)="toggleClass()">
                         Cancel
                     </button>
-                    <button mat-button>
-                        Create
+                    <button mat-button type="submit">
+                        {{ mode === 'create' ? 'Add New Tasks' : 'Edit Task' }}
                     </button>
                 </div>
+            </form>
             </mat-card-content>
         </mat-card>
     </div>
