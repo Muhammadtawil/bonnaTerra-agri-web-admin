@@ -158,7 +158,13 @@ export enum TaskPriorityEnum {
   LOW = 'LOW',
 }
 
-
+export interface NotificationInertface{
+  id: string;
+  title: string;
+  message: string;
+  createdAt: Date;
+  to: string[];
+}
 
 
   export const months = [

@@ -17,7 +17,7 @@ import { CustomizerSettingsService } from '../../customizer-settings/customizer-
 import { AdminBreadcrumbComponent } from '../../common/breadcrumb/breadcrumb.component';
 import { CreateTaskComponent } from "../create-task/create-task.component";
 import { TaskServices } from '../../../services/tasks.services';
-import { GetUsersInfoInterface, TaskInterface, UserInterface } from '../../../services/interfaces';
+import { GetUsersInfoInterface, TaskInterface} from '../../../services/interfaces';
 import { MatPaginator } from '@angular/material/paginator';
 import { deleteAlert, ErrorAlert, successAlert } from '../../common/alerts/alerts';
 import { MatChipsModule } from '@angular/material/chips';
@@ -91,8 +91,6 @@ export class TodoListComponent {
     });
     
     this.getAllTasks();
-    this.getTasksAssignedByUser();
-    this.getTasksAssignedToUser();
     this.getUsersInfo();
   }
 

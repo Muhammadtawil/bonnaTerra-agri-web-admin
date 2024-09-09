@@ -1,17 +1,20 @@
-import { NgClass } from '@angular/common';
+import { CommonModule, NgClass } from '@angular/common';
 import { MatMenuModule } from '@angular/material/menu';
 import { Component, HostListener } from '@angular/core';
 import { ToggleService } from '../sidebar/toggle.service';
 import { MatButtonModule } from '@angular/material/button';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CustomizerSettingsService } from '../customizer-settings/customizer-settings.service';
+import { NotificationServices } from '../../services/notifications.services';
+import { ErrorAlert } from '../common/alerts/alerts';
+import { NotificationInertface } from '../../services/interfaces';
 
 
 
 @Component({
     selector: 'app-header',
     standalone: true,
-    imports: [NgClass, MatMenuModule, MatButtonModule, RouterLink, RouterLinkActive],
+    imports: [NgClass, MatMenuModule, MatButtonModule, RouterLink, RouterLinkActive,CommonModule],
     templateUrl: './header.component.html',
     styleUrls: ['./header.component.scss']
 })
@@ -24,10 +27,11 @@ export class HeaderComponent {
 
     // isToggled
     isToggled = false;
-
+    notificationList: NotificationInertface[] = [];
     constructor(
         private toggleService: ToggleService,
-        public themeService: CustomizerSettingsService
+        public themeService: CustomizerSettingsService,
+        private notifcationService:NotificationServices,
     ) {
         this.toggleService.isSidebarToggled$.subscribe(isSidebarToggled => {
             this.isSidebarToggled = isSidebarToggled;
@@ -35,6 +39,7 @@ export class HeaderComponent {
         this.themeService.isToggled$.subscribe(isToggled => {
             this.isToggled = isToggled;
         });
+        this.getNotifications()
     }
 
     // Burger Menu Toggle
@@ -70,6 +75,16 @@ export class HeaderComponent {
         this.themeService.toggleRTLEnabledTheme();
     }
 
-
+    getNotifications() {
+        this.notifcationService.getAllNotifications().subscribe({
+          next: (data) => {
+            this.notificationList = data;
+          },
+          error: (err) => {
+         ErrorAlert(err)
+          }
+        });
+      }
+    
 
 }

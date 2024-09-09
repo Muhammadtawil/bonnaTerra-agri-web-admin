@@ -83,57 +83,30 @@
                         <div class="title d-flex align-items-center justify-content-between">
                             <span class="fw-medium">
                                 Notifications
-                                <span class="text-body fw-normal">(03)</span>
+                                <span class="text-body fw-normal">({{notificationList.length}})</span>
                             </span>
                             <a routerLink="/notifications" class="link-btn text-daxa">
                                 Clear All
                             </a>
                         </div>
-                        <ul class="menu-body pl-0 mt-0 list-unstyled">
-                            <li class="position-relative">
-                                <div class="icon rounded-circle position-absolute text-center transition">
-                                    <i class="material-symbols-outlined">
-                                        sms
-                                    </i>
-                                </div>
-                                <span class="sub-title d-block">
-                                    You have requested to <strong class="fw-medium">withdrawal</strong>
-                                </span>
-                                <span class="time d-block text-body">
-                                    2 hrs ago
-                                </span>
-                               
-                                <span class="unread d-inline-block rounded-circle bg-daxa position-absolute"></span>
-                            </li>
-                            <li class="position-relative">
+                        <ul class="menu-body pl-0 mt-0 list-unstyled" *ngFor="let notification of notificationList">
+                 
+                            <li class="position-relative" >
                                 <div class="icon rounded-circle position-absolute text-center transition">
                                     <i class="material-symbols-outlined">
                                         person
                                     </i>
                                 </div>
-                                <span class="sub-title d-block">
-                                    <strong class="fw-medium">A new user</strong> added in Daxa
-                                </span>
+                                <a >
+                                 {{notification.message}}
+                                </a>
                                 <span class="time d-block text-body">
                                     3 hrs ago
                                 </span>
                             
                                 <span class="unread d-inline-block rounded-circle bg-daxa position-absolute"></span>
                             </li>
-                            <li class="position-relative">
-                                <div class="icon rounded-circle position-absolute text-center transition">
-                                    <i class="material-symbols-outlined">
-                                        mark_email_unread
-                                    </i>
-                                </div>
-                                <span class="sub-title d-block">
-                                    You have requested to <strong class="fw-medium">withdrawal</strong>
-                                </span>
-                                <span class="time d-block text-body">
-                                    1 day ago
-                                </span>
-                              
-                            </li>
+                       
                         </ul>
                         <div class="menu-footer text-center">
                             <a routerLink="/notifications" class="link-btn text-daxa d-inline-block fw-medium">
